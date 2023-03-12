@@ -1,0 +1,25 @@
+
+// * UserServices/Registries/ Start
+###
+
+GET  {{hostname}}/UserServices/Registries/isAlive
+
+###
+POST  {{hostname}}/UserServices/Registries/signup
+Content-Type: application/json
+
+{
+    "full_name": "Serkan Kuruoğlu",
+    "email": "skuruogl6@gmial.com",
+    "password": "123456s"
+}
+###
+POST  {{hostname}}/UserServices/Registries/login
+Content-Type: application/json
+
+{
+    "email": "skuruogl6@gmial.com",
+    "password": "123456s"
+}
+###
+// * UserServices/Registries/ END

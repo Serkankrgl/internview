@@ -1,0 +1,18 @@
+{
+   "services": {
+      "UserServices": {
+         "index": "0",
+         "instances": [
+            {
+               "apiName": "UserServices",
+               "protocol": "http",
+               "host": "localhost",
+               "port": "3001",
+               "url": "http://localhost:3001/",
+               "enabled": true
+            }
+         ],
+         "loadBalanceStrategy": "ROUND_ROBIN"
+      }
+   }
+}

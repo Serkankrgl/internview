@@ -1,0 +1,45 @@
+# ctrl+alt+e to switch env
+# update settings.json file to use
+#"rest-client.environmentVariables": {
+    #     "$shared": {
+    #         "apiKey": "my-api-key-123"
+    #     },
+    #     "Local Env":{
+    #         "hostname" : "http://localhost:3000"
+    #     },
+    #     "Dev Env":{
+    #         "hostname" : "http://localhost:3000"
+    #     },
+    # }
+###
+
+POST {{hostname}}/apiRegister
+Content-Type: application/json
+
+{
+    "apiName":"dummy",
+    "protocol" :"http",
+    "host": "localhost",
+    "port":3001
+}
+###
+
+POST {{hostname}}/apiUnregister
+Content-Type: application/json
+
+{
+    "apiName":"dummy",
+    "url": "http://localhost:3001/"
+}
+###
+
+###
+
+POST {{hostname}}/apiEnable/UserServices
+Content-Type: application/json
+
+{
+    "url": "http://localhost:3001/",
+    "enabled": false
+}
+###

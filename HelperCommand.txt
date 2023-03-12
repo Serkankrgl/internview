@@ -1,0 +1,4 @@
+arka tarafta çalışan sunucuyu port numarasına göre bulur
+# sudo lsof -i :3000
+verilen PID'e göre processi kill eder.
+# kill -9 <PID>
