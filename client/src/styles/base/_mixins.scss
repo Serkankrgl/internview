@@ -1,0 +1,14 @@
+@mixin vertical-list {
+       display: flex;
+       align-items: center;
+       flex-direction: column;
+}
+
+@mixin breakpoint($point) {
+   @if $point == md {
+      // 768px
+      @media (min-width: 48em) {
+         @content;
+      }
+   }
+}

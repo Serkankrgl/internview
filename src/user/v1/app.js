@@ -27,14 +27,14 @@ mongoose
     process.exit(1);
   });
 
-const APP_PORT = process.env.APP_PORT || 3001;
+const APP_PORT = process.env.APP_PORT || 3002;
 app.use("/Registries", RegistryRoutes);
 app.use("/Users", UserRoutes);
 
 app.listen(APP_PORT, () => {
   axios({
     method: "POST",
-    url: "http://localhost:3000/apiRegister",
+    url: "http://localhost:3001/apiRegister",
     headers: { "Content-Type": "application/json" },
     data: {
       apiName: "UserServices",
