@@ -101,18 +101,18 @@
             border-radius: $borderRadius;
             font-size: 1rem;
             font-family: inherit;
-            background: $primary;
+            background: rgba($primary, 0.6);
             color: $dark;
             border: 1px solid transparent;
             transition: 0.3s ease all;
 
             &:hover {
-               border-color: $primary;
+               border-color: rgba($primary, 0.6);
                background: rgba($primary, 0.1);
                color: $primary;
             }
             &:active {
-               border-color: $primary;
+               border-color: rgba($primary, 0.6);
                background: linear-gradient(
                   rgba($primary, 0.2),
                   rgba($primary, 0.3)

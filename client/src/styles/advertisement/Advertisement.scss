@@ -1,0 +1,20 @@
+@import '../base/_mixins';
+@import '../base/_variables';
+
+.container {
+   width: 80vw;
+   align-items: center;
+   justify-content: center;
+   margin-left: 10vw;
+   margin-right: 10vw;
+}
+
+.flex-container {
+   display: grid;
+   grid-template-columns: repeat(4, 15vw);
+   justify-content: space-between;
+   gap: 10px;
+   padding: 0.5rem;
+   margin: 0 auto;
+   box-sizing: border-box;
+}
