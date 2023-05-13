@@ -1,0 +1,25 @@
+@import '../base/_mixins';
+@import '../base/_variables';
+
+.application-container {
+   margin: 2rem;
+   padding: 0.8rem;
+   background-color: $primary-300;
+   overflow-x: overlay;
+   h1 {
+      color: coral;
+   }
+   .x {
+      position: inherit;
+      float: right;
+      font-size: large;
+   }
+   .detail-container {
+      margin: 0.8rem 0;
+      padding: 0.8rem;
+      border: 2px coral solid;
+      hr {
+         color: coral;
+      }
+   }
+}

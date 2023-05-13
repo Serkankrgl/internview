@@ -1,87 +1,79 @@
-import { registerUser } from 'apis/auth'
-import {
-   isContainWhiteSpace,
-   isEmail,
-   isEmpty,
-   isLength,
-} from 'helper/validator'
-import React, { useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast'
-import { Link, useNavigate } from 'react-router-dom'
-import 'styles/Auth.scss'
+import { registerUser } from 'apis/auth';
+import { isContainWhiteSpace, isEmail, isEmpty, isLength } from 'helper/validator';
+import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import 'styles/Auth.scss';
 
 const Register = (props) => {
-   const navigate = useNavigate()
-   const [formData, setFormData] = useState({})
-   const [errors, setErrors] = useState({})
-   const [formSubmitted, setFormSubmitted] = useState(false)
+   const navigate = useNavigate();
+   const [formData, setFormData] = useState({});
+   const [errors, setErrors] = useState({});
+   const [formSubmitted, setFormSubmitted] = useState(false);
 
    const handleInputChange = (event) => {
-      const target = event.target
-      const value = target.value
-      const name = target.name
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
 
-      formData[name] = value
+      formData[name] = value;
 
-      setFormData(formData)
-   }
+      setFormData(formData);
+   };
    const validateLoginForm = (e) => {
-      let errors = {}
+      let errors = {};
 
       if (isEmpty(formData.full_name)) {
-         errors.full_name = 'Ad soyad boş bırakılamaz.'
+         errors.full_name = 'Ad soyad boş bırakılamaz.';
       }
 
       //Email Validation
       if (isEmpty(formData.email)) {
-         errors.email = 'Email boş bırakılamaz.'
+         errors.email = 'Email boş bırakılamaz.';
       } else if (!isEmail(formData.email)) {
-         errors.email = 'Lütfen geçerli bir mail adresi giriniz.'
+         errors.email = 'Lütfen geçerli bir mail adresi giriniz.';
       }
       //Password Validation
       if (isEmpty(formData.password)) {
-         errors.password = 'Şifre boş bırakılamaz'
+         errors.password = 'Şifre boş bırakılamaz';
       } else if (isContainWhiteSpace(formData.password)) {
-         errors.password = 'Şifre boşluk karakteri içeremez.'
-      } else if (
-         !isLength(formData.password, { gte: 6, lte: 16, trim: true })
-      ) {
-         errors.password = 'Şifre 6-16 karakterden oluşmalıdır.'
+         errors.password = 'Şifre boşluk karakteri içeremez.';
+      } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
+         errors.password = 'Şifre 6-16 karakterden oluşmalıdır.';
       }
 
       if (isEmpty(errors)) {
-         return true
+         return true;
       } else {
-         return errors
+         return errors;
       }
-   }
+   };
 
    const register = (e) => {
-      e.preventDefault()
+      e.preventDefault();
 
-      let errors = validateLoginForm()
+      let errors = validateLoginForm();
 
       if (errors === true) {
-         let registerPromis = registerUser(formData)
+         let registerPromis = registerUser(formData);
          toast.promise(registerPromis, {
             loading: 'Oluşturuluyor...',
             success: <b>Kayıt Başarıyla oluşturuldu.</b>,
-            error: (err) =>
-               err?.response?.data?.msg ?? 'Bir şeyler ynalış gitti.',
-         })
+            error: (err) => err?.response?.data?.msg ?? 'Bir şeyler ynalış gitti.'
+         });
          registerPromis.then(() => {
-            navigate('/auth/login')
-         })
+            navigate('/auth/login');
+         });
       } else {
-         setErrors(errors)
-         setFormSubmitted(true)
+         setErrors(errors);
+         setFormSubmitted(true);
       }
-   }
+   };
 
    return (
       <>
          <Toaster position="top-center" reverseOrder={false}></Toaster>
-         <div className="Container">
+         <div className="auth-container ">
             <div className="auth-form-container">
                <h2>Kayıt Ol</h2>
                <form className="custom-form" onSubmit={register}>
@@ -92,9 +84,7 @@ const Register = (props) => {
                      id="name"
                      placeholder="full Name"
                   />
-                  {errors.full_name && (
-                     <small className="small-hint">{errors.full_name}</small>
-                  )}
+                  {errors.full_name && <small className="small-hint">{errors.full_name}</small>}
                   <label htmlFor="email">Email</label>
                   <input
                      onChange={handleInputChange}
@@ -103,9 +93,7 @@ const Register = (props) => {
                      id="email"
                      name="email"
                   />
-                  {errors.email && (
-                     <small className="small-hint">{errors.email}</small>
-                  )}
+                  {errors.email && <small className="small-hint">{errors.email}</small>}
                   <label htmlFor="password">Şifre</label>
                   <input
                      onChange={handleInputChange}
@@ -114,9 +102,7 @@ const Register = (props) => {
                      id="password"
                      name="password"
                   />
-                  {errors.password && (
-                     <small className="small-hint">{errors.password}</small>
-                  )}
+                  {errors.password && <small className="small-hint">{errors.password}</small>}
                   <button type="submit">Kayıt Ol</button>
                </form>
                <Link to="/auth/login" className="link-btn">
@@ -125,7 +111,7 @@ const Register = (props) => {
             </div>
          </div>
       </>
-   )
-}
+   );
+};
 
-export default Register
+export default Register;

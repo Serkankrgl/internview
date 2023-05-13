@@ -1,56 +1,56 @@
-import React, { useEffect, useState } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
-import { BiMenuAltRight } from 'react-icons/bi'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import classes from '../../styles/Header.module.scss'
+import React, { useEffect, useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import { BiMenuAltRight } from 'react-icons/bi';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import classes from '../../styles/Header.module.scss';
 
 export default function Header() {
-   let token = localStorage.getItem('access_token')
-   const navigate = useNavigate()
-   const [menuOpen, setMenuOpen] = useState(false)
-   const [isLogedIn, setIsLogedIn] = useState(token ? true : false)
+   let token = localStorage.getItem('access_token');
+   const navigate = useNavigate();
+   const [menuOpen, setMenuOpen] = useState(false);
+   const [isLogedIn, setIsLogedIn] = useState(token ? true : false);
    const [size, setSize] = useState({
       width: undefined,
-      height: undefined,
-   })
+      height: undefined
+   });
 
    //Resize Method
    useEffect(() => {
       const handleResize = () => {
          setSize({
             width: window.innerWidth,
-            height: window.innerHeight,
-         })
-      }
-      window.addEventListener('resize', handleResize)
+            height: window.innerHeight
+         });
+      };
+      window.addEventListener('resize', handleResize);
 
-      return () => window.removeEventListener('resize', handleResize)
-   }, [])
+      return () => window.removeEventListener('resize', handleResize);
+   }, []);
    useEffect(() => {
-      let it = localStorage.getItem('access_token')
-      setIsLogedIn(it ? true : false)
-   }, [localStorage.getItem('access_token')])
+      let it = localStorage.getItem('access_token');
+      setIsLogedIn(it ? true : false);
+   }, [localStorage.getItem('access_token')]);
    //Menu
    useEffect(() => {
       if (size.width > 768 && menuOpen) {
-         setMenuOpen(false)
+         setMenuOpen(false);
       }
-   }, [size.width, menuOpen])
+   }, [size.width, menuOpen]);
 
    const menuToggleHandler = () => {
-      setMenuOpen((p) => !p)
-   }
+      setMenuOpen((p) => !p);
+   };
 
    const loginClickHandler = () => {
-      menuToggleHandler()
-      navigate('/auth/login')
-   }
+      menuToggleHandler();
+      navigate('/auth/login');
+   };
    const logoutClickHandler = () => {
-      menuToggleHandler()
+      menuToggleHandler();
       // TODO: local storge token temizle
-      localStorage.clear()
-      navigate('/auth/login')
-   }
+      localStorage.clear();
+      navigate('/auth/login');
+   };
    return (
       <header className={classes.header}>
          <div className={classes.header__content}>
@@ -60,8 +60,7 @@ export default function Header() {
             <nav
                className={`${classes.header__content__nav} ${
                   menuOpen && size.width < 768 ? classes.isMenu : ''
-               }`}
-            >
+               }`}>
                <ul>
                   <li>
                      <Link to="/advertisement" onClick={menuToggleHandler}>
@@ -78,12 +77,19 @@ export default function Header() {
                         Birlikte Geliştirelim
                      </Link>
                   </li>
+                  <li>
+                     {!isLogedIn ? (
+                        <button onClick={loginClickHandler}>Giriş Yap</button>
+                     ) : (
+                        <>
+                           <Link to="/profile" onClick={menuToggleHandler}>
+                              Profil
+                           </Link>
+                           <button onClick={logoutClickHandler}>Çıkış Yap</button>
+                        </>
+                     )}
+                  </li>
                </ul>
-               {!isLogedIn ? (
-                  <button onClick={loginClickHandler}>Giriş Yap</button>
-               ) : (
-                  <button onClick={logoutClickHandler}>Çıkış Yap</button>
-               )}
             </nav>
             <div className={classes.header__content__toggle}>
                {!menuOpen ? (
@@ -94,5 +100,5 @@ export default function Header() {
             </div>
          </div>
       </header>
-   )
+   );
 }

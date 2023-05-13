@@ -22,4 +22,81 @@ Content-Type: application/json
     "password": "123456s"
 }
 ###
+
+POST  {{hostname}}/UserServices/Users/updateResume
+Content-Type: application/json
+
+{
+    "_id":"6431f89378537ec3ef3e31be",
+    "resume":{
+        "full_name": "serkan Kuruoğlu",
+        "phone": "5459548535",
+        "email": "serkan.kuruoglu26@gmail.com",
+        "about_me": "hakkımda bilmeniz gereken tek şey bu şimdilik yeterli",
+        "educations": [
+            {
+                "school_name": "sinan alağaç",
+                "start_date": "2009-05-12",
+                "end_date": "2005-04-11",
+                "is_current": false
+            },
+            {
+                "school_name": "sakarya üniversitesi",
+                "start_date": "2018-01-01",
+                "end_date": "2023-06-06",
+                "is_current": false
+            }
+        ],
+        "experiences": [
+            {
+                "company_name": "ford otosan",
+                "company_info": "Otomativ",
+                "start_date": "2020-10-01",
+                "end_date": "",
+                "is_current": true
+            }
+        ],
+        "skills": [
+            "C#",
+            "sql",
+            "nodejs"
+        ],
+        "hobbies": [
+            "bilgisayar oyunları",
+            "yapboz",
+            "lego"
+        ],
+        "referances": [
+            {
+                "full_name": "özgenur yıldız",
+                "title": "developer",
+                "email": "öyidli@gmail.com",
+                "phone": "54555556565"
+            }
+        ],
+        "certificates": [
+            {
+                "name": "scrum",
+                "agency": "sctum inc",
+                "certificate_identity": "asdasdsa"
+            }
+        ],
+        "trophies": [
+            {
+                "name": "kaza verileri bildirgesi",
+                "info": "kaza verileri bildirgesi"
+            }
+        ]
+    }
+}
+
+
+###
 // * UserServices/Registries/ END
+
+GET  {{hostname}}/UserServices/Users/getResume
+Content-Type: application/json
+
+ { "_id": "6431f89378537ec3ef3e31be" }
+
+###

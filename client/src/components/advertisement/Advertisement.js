@@ -1,20 +1,38 @@
-import React from 'react'
-import 'styles/advertisement/Advertisement.scss'
-import AdListItem from './components/AdListItem'
-
+import React, { useEffect, useState } from 'react';
+// import 'styles/advertisement/Advertisement.scss';
+import { Drawer } from 'components/shared';
+import { AdList, AdDetail } from './components';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelectedAd } from 'stores/advertisementStore';
+import { Link } from 'react-router-dom';
 export default function Advertisement() {
-   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+   const dispatch = useDispatch();
+   let { selectedAd } = useSelector((state) => state.advertisement);
+   const [show, setShow] = useState(false);
+
+   ///Effects
+
+   //componentDidMount
+   useEffect(() => {
+      dispatch(setSelectedAd({}));
+   }, []);
+
+   //Trigger When currentAd Changed
+   useEffect(() => {
+      if (Object.keys(selectedAd).length != 0) {
+         setShow(true);
+      } else {
+         setShow(false);
+      }
+   }, [selectedAd]);
+
    return (
-      <div className="container">
-         <div className="flex-container">
-            {array.map((Item) => {
-               return (
-                  <div className="flex-item" key={Item}>
-                     <AdListItem />
-                  </div>
-               )
-            })}
-         </div>
+      <div>
+         <Link to="/advertisement/advertise" className="advertise">
+            Çalışan mı arıyorsun? Hemen ilan ver.
+         </Link>
+         <AdList />
+         <Drawer show={show} setShow={setShow} children={<AdDetail />} />
       </div>
-   )
+   );
 }

@@ -86,38 +86,9 @@
                   }
                   &:active {
                      border-radius: calc(#{$borderRadius} + 6px);
-                     background: linear-gradient(
-                        rgba($light, 0.1),
-                        rgba($light, 0.2)
-                     );
+                     background: linear-gradient(rgba($light, 0.1), rgba($light, 0.2));
                   }
                }
-            }
-         }
-         button {
-            cursor: pointer;
-            outline: none;
-            padding: 0.75rem 1.25rem;
-            border-radius: $borderRadius;
-            font-size: 1rem;
-            font-family: inherit;
-            background: rgba($primary, 0.6);
-            color: $dark;
-            border: 1px solid transparent;
-            transition: 0.3s ease all;
-
-            &:hover {
-               border-color: rgba($primary, 0.6);
-               background: rgba($primary, 0.1);
-               color: $primary;
-            }
-            &:active {
-               border-color: rgba($primary, 0.6);
-               background: linear-gradient(
-                  rgba($primary, 0.2),
-                  rgba($primary, 0.3)
-               );
-               color: $primary;
             }
          }
 

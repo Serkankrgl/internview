@@ -1,0 +1,19 @@
+{
+  "name": "internview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:all": "concurrently --kill-others \"npm run start:apigateway\" \"npm run start:user\" \"npm run start:advertisement\" \"npm run start:client\"",
+    "start:apigateway": "npm --prefix .\\apigateway run dev",
+    "start:user": "npm --prefix .\\src\\user\\v1\\ run dev",
+    "start:advertisement": "npm --prefix .\\src\\advertisement\\v1\\ run dev",
+    "start:client": "npm --prefix .\\client\\ start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}

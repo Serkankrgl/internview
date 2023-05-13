@@ -1,4 +1,4 @@
-const { registerUser, list, loginUser } = require("../services/Users");
+const { registerUser, list, loginUser } = require("../services/Registries");
 const httpStatus = require("http-status");
 const {
   passwordToHash,

@@ -1,18 +1,32 @@
 {
-   "services": {
-      "UserServices": {
-         "index": "0",
-         "instances": [
-            {
-               "apiName": "UserServices",
-               "protocol": "http",
-               "host": "localhost",
-               "port": 3002,
-               "url": "http://localhost:3002/",
-               "enabled": true
-            }
-         ],
-         "loadBalanceStrategy": "ROUND_ROBIN"
-      }
-   }
+  "services": {
+    "UserServices": {
+      "index": 0,
+      "instances": [
+        {
+          "apiName": "UserServices",
+          "protocol": "http",
+          "host": "localhost",
+          "port": 3002,
+          "url": "http://localhost:3002/",
+          "enabled": true
+        }
+      ],
+      "loadBalanceStrategy": "ROUND_ROBIN"
+    },
+    "AdvertisementServices": {
+      "index": "0",
+      "instances": [
+        {
+          "apiName": "AdvertisementServices",
+          "protocol": "http",
+          "host": "localhost",
+          "port": 3010,
+          "url": "http://localhost:3010/"
+        }
+      ],
+      "loadBalanceStrategy": "ROUND_ROBIN",
+      "enabled": true
+    }
+  }
 }

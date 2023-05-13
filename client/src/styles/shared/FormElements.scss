@@ -1,0 +1,50 @@
+@import '../base/_variables';
+input {
+   margin: 0.5rem 0;
+   padding: 1rem;
+   border: none;
+   border-radius: 10px;
+}
+
+select {
+   margin: 0.5rem 0;
+   padding: 1rem;
+   border: none;
+   border-radius: 10px;
+}
+
+textarea {
+   margin: 0.5rem 0;
+   padding: 1rem;
+   border: none;
+   border-radius: 10px;
+   resize: vertical;
+}
+label {
+   text-align: left;
+   padding: 0.25rem 0;
+}
+
+button {
+   cursor: pointer;
+   outline: none;
+   padding: 0.75rem 1.25rem;
+   border-radius: $borderRadius;
+   font-size: 1rem;
+   font-family: inherit;
+   background: $primary-400;
+   color: $light;
+   border: 1px solid transparent;
+   transition: 0.3s ease all;
+
+   &:hover {
+      border-color: $primary;
+      background: rgba($primary, 0.1);
+      color: $primary;
+   }
+   &:active {
+      border-color: $primary;
+      background: linear-gradient(rgba($primary, 0.2), rgba($primary, 0.3));
+      color: $primary;
+   }
+}

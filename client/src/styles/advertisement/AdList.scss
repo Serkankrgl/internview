@@ -1,0 +1,21 @@
+@import '../base/_mixins';
+@import '../base/_variables';
+
+.container {
+   align-items: center;
+   justify-content: center;
+   padding: 1rem 3rem;
+   width: 100%;
+}
+
+.flex-container {
+   height: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: r;
+   flex: auto;
+   justify-content: space-around;
+   gap: 2rem 5rem;
+   padding: 0 3rem;
+   box-sizing: border-box;
+}

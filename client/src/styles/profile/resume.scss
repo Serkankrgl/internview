@@ -1,0 +1,218 @@
+@import '../base/_mixins';
+@import '../base/_variables';
+
+* {
+}
+.resume-section {
+   height: 89vh;
+   width: 80%;
+   overflow-y: overlay;
+   .footer {
+      position: absolute;
+      bottom: 0%;
+      padding: 2rem;
+      width: 70%;
+      button {
+         margin: 0% 10%;
+         width: 90%;
+      }
+   }
+}
+.resume {
+   display: flex;
+   flex-direction: row;
+   overflow-x: scroll;
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+
+   width: 79vw;
+
+   a {
+      color: #ffffff;
+      text-decoration: none;
+   }
+   &_box {
+      height: 100px;
+      min-width: 250px;
+      background-color: #ff7f50;
+      text-align: center;
+      align-content: center;
+      justify-content: center;
+
+      border: 2px solid black;
+
+      .inner_box {
+         transform: translate(0%, 125%);
+      }
+   }
+   .active {
+      border-color: $primary;
+      background: rgba($primary, 0.1);
+      color: $primary;
+   }
+}
+
+.resume_content {
+   * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+   }
+
+   .form-box {
+      /* border: 1px solid red; */
+      margin: 0vw;
+      padding: 3vw;
+      position: relative;
+
+      /* position:relative for .prevBtn and .nextBtn position:absolute; */
+
+      .left-field {
+         width: 30%;
+         float: left;
+
+         button {
+            width: 100%;
+         }
+      }
+      .right-field {
+         padding-left: 2rem;
+
+         // border: 2px red solid;
+         .box {
+            // border: 2px red solid;
+            display: 'flex';
+            align-items: 'center';
+            justify-content: 'space-between';
+            height: min-content;
+            margin: 1rem;
+            padding: 0.8rem;
+            border-radius: $borderRadius;
+            background-color: $primary-400;
+            width: 90%;
+         }
+      }
+
+      h5 {
+         font-size: 35px;
+         text-align: center;
+         color: #f55a00;
+         margin: 0 0 0.5vh 0;
+      }
+
+      .header-label {
+         display: block;
+         text-align: center;
+         font-size: 20px;
+         margin: 0 0 2vh 0;
+      }
+      .check-lable {
+         display: inline;
+         margin-left: 5rem;
+         font-size: 20px;
+         width: 50%;
+
+         div {
+            width: 40%;
+            margin: auto;
+         }
+      }
+      input[type='checkbox'] {
+         display: inline-block;
+         vertical-align: middle;
+         // font-size: 30px;
+         width: 40%;
+         height: 40%;
+      }
+      input,
+      textarea {
+         display: block;
+         width: 100%;
+         padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+         margin: 0.9vw 0;
+         border: 0;
+         border-radius: 5px;
+         font-size: 20px;
+      }
+      textarea {
+         height: 15vh;
+      }
+
+      .prevBtn,
+      .nextBtn,
+      .middleBtn {
+         // display: inline-block;
+         width: 30%;
+         height: 2rem;
+         border: 0;
+         // bottom: 0;
+         cursor: pointer;
+         font-size: 20px;
+         // position: absolute;
+      }
+
+      .prevBtn {
+         // margin: 1rem 0 1rem 0;
+         border-radius: 20px 0 0 20px;
+         // left: 4vw;
+      }
+      .middleBtn {
+         margin: 1rem 0 1rem 0;
+         // padding: 0 5rem;
+         border-radius: 0;
+         // left: 28vw;
+      }
+      .nextBtn {
+         // margin: 1rem 0 1rem 8rem;
+         // margin-left: 25%;
+         border-radius: 0 20px 20px 0;
+         // right: 4vw;
+      }
+      .button-group {
+         width: 100%;
+         // margin-left: 3vw;
+         margin-top: 2vh;
+         position: absolute;
+         bottom: 0;
+      }
+   }
+}
+
+.d-flex {
+   display: flex;
+   .flex-box {
+      height: min-content;
+      display: inline;
+      margin: 2rem 0.6rem;
+      padding: 0.8rem;
+      border-radius: $borderRadius;
+      background-color: $primary-400;
+   }
+}
+.delete-button {
+   background-color: transparent;
+   float: right;
+   position: initial;
+   &:hover {
+      border: none;
+      background-color: transparent;
+      margin: 0px;
+      padding: 0px;
+   }
+}
+.icon {
+   width: 2rem;
+   float: right;
+   margin: 0.6rem;
+   &:hover {
+      animation: mover 1s infinite alternate;
+      @keyframes mover {
+         0% {
+            transform: translateY(0);
+         }
+         100% {
+            transform: translateY(-10px);
+         }
+      }
+   }
+}

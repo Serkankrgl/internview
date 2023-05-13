@@ -1,13 +1,21 @@
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 
 /** import all components */
-import { Advertisement } from 'components/advertisement'
-import { Login, Register } from 'components/auth'
-import { CollaborativeIde } from 'components/collaborativeIDE'
-import { Problems } from 'components/problems'
-import Header from 'components/shared/Header'
-import Home from './components/Home'
-import PageNotFound from './components/shared/PageNotFound'
+import { Advertisement, Apply, Advertise } from 'components/advertisement';
+import { Login, Register } from 'components/auth';
+import { CollaborativeIde } from 'components/collaborativeIDE';
+import { Problems } from 'components/problems';
+import Header from 'components/shared/Header';
+import Home from './components/Home';
+import {
+   ProfileSideBar,
+   UserInfo,
+   Resume,
+   UserApplications,
+   UserAdvertisement,
+   Calender
+} from 'components/profile';
+import PageNotFound from './components/shared/PageNotFound';
 
 /** auth middleware */
 // import { AuthorizeUser, ProtectRoute } from './middleware/auth'
@@ -24,39 +32,89 @@ const router = createBrowserRouter([
       children: [
          {
             path: '/',
-            element: <Home />,
+            element: <Home />
          },
          {
             path: '/auth',
+
             children: [
                { path: '/auth/login', element: <Login /> },
-               { path: '/auth/register', element: <Register /> },
-            ],
+               { path: '/auth/register', element: <Register /> }
+            ]
          },
          {
             path: '/advertisement',
-            element: <Advertisement />,
+            children: [
+               { path: '/advertisement/', element: <Advertisement /> },
+               { path: '/advertisement/apply', element: <Apply /> },
+               { path: '/advertisement/advertise', element: <Advertise /> }
+            ]
+         },
+         {
+            path: '/profile',
+            children: [
+               {
+                  path: '/profile/',
+                  element: (
+                     <ProfileSideBar>
+                        <UserInfo />
+                     </ProfileSideBar>
+                  )
+               },
+               {
+                  path: '/profile/Resume',
+                  element: (
+                     <ProfileSideBar>
+                        <Resume />
+                     </ProfileSideBar>
+                  )
+               },
+               {
+                  path: '/profile/UserApplications',
+                  element: (
+                     <ProfileSideBar>
+                        <UserApplications />
+                     </ProfileSideBar>
+                  )
+               },
+               {
+                  path: '/profile/UserAdvertisement',
+                  element: (
+                     <ProfileSideBar>
+                        <UserAdvertisement />
+                     </ProfileSideBar>
+                  )
+               },
+               {
+                  path: '/profile/Calender',
+                  element: (
+                     <ProfileSideBar>
+                        <Calender />
+                     </ProfileSideBar>
+                  )
+               }
+            ]
          },
          {
             path: '/collaborativeIDE',
-            element: <CollaborativeIde />,
+            element: <CollaborativeIde />
          },
          {
             path: '/problems',
-            element: <Problems />,
+            element: <Problems />
          },
          {
             path: '*',
-            element: <PageNotFound />,
-         },
-      ],
-   },
-])
+            element: <PageNotFound />
+         }
+      ]
+   }
+]);
 
 export default function App() {
    return (
       <main>
          <RouterProvider router={router}></RouterProvider>
       </main>
-   )
+   );
 }

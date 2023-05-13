@@ -1,0 +1,51 @@
+@import '../base/_mixins';
+@import '../base/_variables';
+
+.detail-container {
+   margin: 1.7rem;
+
+   .detail-header {
+      display: flex;
+      align-items: center;
+      background-color: $primary-300;
+      .title {
+         padding: 1.7rem;
+      }
+
+      .icon {
+         width: 8rem;
+         height: 8rem;
+         padding: 12px;
+      }
+   }
+
+   .detail-content {
+      .content-table-item {
+         margin: 0.8rem 1.3rem;
+      }
+      &-desc,
+      &-req,
+      &-comp-info {
+         margin: 0.8rem 1.3rem;
+         padding: 0.5rem;
+      }
+   }
+
+   .detail-footer {
+      display: flex;
+      justify-content: space-between;
+      .btn {
+         width: 45%;
+         height: 3rem;
+         margin: 0.8rem 0;
+      }
+   }
+
+   a,
+   a:hover,
+   a:focus,
+   a:active {
+      text-decoration: none;
+      color: inherit;
+   }
+}

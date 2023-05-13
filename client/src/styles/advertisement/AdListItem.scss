@@ -13,8 +13,9 @@ $cardBg: rgba(255, 255, 255, 0.015);
    cursor: pointer;
    position: relative;
    transition: box-shadow 0.25s;
-   min-width: 15vw;
-   min-width: min-content;
+
+   width: 30rem;
+   min-width: 25rem;
 
    &::before {
       content: '';
@@ -114,3 +115,4 @@ $cardBg: rgba(255, 255, 255, 0.015);
       }
    }
 }
+

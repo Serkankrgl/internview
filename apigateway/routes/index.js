@@ -48,9 +48,9 @@ router.post("/apiEnable/:apiName", (req, res) => {
   }
 });
 
-router.route("/:apiName/:module/:root").all(async (req, res) => {
+router.route("/:apiName/:module/:root/:id?").all(async (req, res) => {
+  console.log("req.params :>> ", req.params);
   const service = registry.services[req.params.apiName];
-
   if (service) {
     if (!service.loadBalanceStrategy) {
       service.loadBalanceStrategy = "ROUND_ROBIN";
@@ -58,8 +58,10 @@ router.route("/:apiName/:module/:root").all(async (req, res) => {
 
     const newIndex = loadbalancer[service.loadBalanceStrategy](service);
     const url = service.instances[newIndex].url;
+    var id = req.params.id ? req.params.id : "";
 
-    let redirectUrl = url + req.params.module + "/" + req.params.root;
+    let redirectUrl =
+      url + req.params.module + "/" + req.params.root + "/" + id;
     //TODO:axios header kısmını düzenle.
     await axios({
       method: req.method,
@@ -71,7 +73,8 @@ router.route("/:apiName/:module/:root").all(async (req, res) => {
         res.send(result.data);
       })
       .catch((error) => {
-        console.log("error :>> ", error.response);
+        console.log("object :>> ", redirectUrl);
+        // console.log("error :>> ", error.response);
         res.send(error.response.data);
       });
   } else {

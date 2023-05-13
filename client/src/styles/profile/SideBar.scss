@@ -1,0 +1,35 @@
+@import '../base/_mixins';
+@import '../base/_variables';
+
+.sidebar {
+   float: left;
+   height: 89vh;
+   width: 20%;
+   background-color: $dark;
+   ul {
+      list-style: none;
+      margin: 1.2rem;
+      text-align: center;
+      margin-bottom: $spacing-lg;
+      a {
+         text-decoration: none;
+         color: inherit;
+         transition: 0.3s ease all;
+      }
+      li {
+         margin-bottom: $spacing-lg;
+         @include breakpoint(md) {
+            margin-bottom: 0;
+            margin-right: $spacing-md;
+         }
+         &:hover {
+            background: rgba($light, 0.1);
+            border-radius: calc(#{$borderRadius} + 6px);
+         }
+         &:active {
+            border-radius: calc(#{$borderRadius} + 6px);
+            background: linear-gradient(rgba($light, 0.1), rgba($light, 0.2));
+         }
+      }
+   }
+}

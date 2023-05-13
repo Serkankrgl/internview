@@ -1,0 +1,75 @@
+@import '../base/_variables';
+.advertise-container {
+   text-align: center;
+   display: flex;
+   min-height: 90vh;
+   color: $light;
+
+   &-form {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100vw;
+      justify-content: center;
+      gap: 2%;
+   }
+
+   &-form-group {
+      display: flex;
+      flex-direction: column;
+
+      margin: 0.8rem 0;
+   }
+
+   .custom-form {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .row {
+      display: flex;
+      flex-wrap: wrap;
+   }
+   .child1 {
+      flex: 0 0 56%;
+   }
+   .child2 {
+      flex: 0 0 36%;
+   }
+   .w-50 {
+      flex: 0 0 46%;
+   }
+   .w-30 {
+      flex: 0 0 30%;
+   }
+
+   li {
+      text-align: start;
+      display: flex;
+      justify-content: space-between;
+   }
+}
+
+.input-group {
+   display: flex;
+   flex-direction: row;
+
+   input {
+      /* This bit sets up the horizontal layout */
+      display: flex;
+      flex-direction: row;
+      margin-right: 0.8rem;
+      width: 100%;
+   }
+
+   select {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      margin-right: 0.8rem;
+      width: 100%;
+   }
+   button {
+      /* Just a little styling to make it pretty */
+      background: $primary-300;
+   }
+}

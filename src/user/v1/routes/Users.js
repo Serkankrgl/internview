@@ -1,8 +1,10 @@
 const express = require("express");
+const { updateResume, getResume } = require("../controller/User");
+
 const router = express.Router();
 
-router.post("/login");
+router.route("/updateResume").post(updateResume);
 
-router.post("/register");
+router.route("/getResume/:id").get(getResume);
 
 module.exports = router;
