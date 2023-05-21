@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setSelectedAd } from 'stores/advertisementStore';
+import { setSelectedAd, setAdToApply } from 'stores/advertisementStore';
 import hrIcon from 'assets/hr.svg';
 export default function AdDetail() {
    const { selectedAd } = useSelector((state) => state.advertisement);
@@ -14,7 +14,8 @@ export default function AdDetail() {
    };
 
    const apply = () => {
-      navigate('/advertisement/apply', { state: { advertiment: selectedAd } });
+      dispatch(setAdToApply(selectedAd));
+      navigate('/advertisement/apply');
    };
    return (
       <>

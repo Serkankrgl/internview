@@ -1,6 +1,10 @@
 @import '../base/_mixins';
 @import '../base/_variables';
-
+.content {
+   overflow-y: auto;
+   width: 80%;
+   max-height: 89vh;
+}
 .sidebar {
    float: left;
    height: 89vh;

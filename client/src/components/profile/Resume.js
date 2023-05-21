@@ -11,7 +11,7 @@ import {
    ResumeReferance,
    ResumeCertificate,
    ResumeTrophy
-} from './components/ResumeIndex';
+} from './components/ResumeComponents/ResumeIndex';
 import toast, { Toaster } from 'react-hot-toast';
 import { updateResume, getResumeById } from 'apis/userApis';
 
@@ -32,7 +32,6 @@ export default function Resume() {
       try {
          console.log('object :>> ');
          await getResumeById().then((result) => {
-            console.log('result :>> ', result);
             dispatch(setResume(result.resume));
             setIsLoading(false);
          });
@@ -42,19 +41,18 @@ export default function Resume() {
    };
    const { resume } = useSelector((state) => state.userStore);
    const onSaved = () => {
-      console.log('resumex :>> ', resume);
-      // let resumeUpdatePromise = updateResume(resume);
+      let resumeUpdatePromise = updateResume(resume);
 
-      // toast.promise(resumeUpdatePromise, {
-      //    loading: 'kaydediliyor...',
-      //    success: 'Kaydedildi',
-      //    error: (err) => err?.response?.data?.msg ?? 'Bir şeyler yanlış gitti'
-      // });
+      toast.promise(resumeUpdatePromise, {
+         loading: 'kaydediliyor...',
+         success: 'Kaydedildi',
+         error: (err) => err?.response?.data?.msg ?? 'Bir şeyler yanlış gitti'
+      });
 
-      // resumeUpdatePromise.then((res) => {
-      //    console.log('resumeSet :>> ', res);
-      //    dispatch(setResume(res));
-      // });
+      resumeUpdatePromise.then((res) => {
+         console.log('resumeSet :>> ', res);
+         dispatch(setResume(res));
+      });
    };
 
    const sections = [
@@ -97,7 +95,7 @@ export default function Resume() {
                   {6 == activeIndex && <ResumeCertificate />}
                   {7 == activeIndex && <ResumeTrophy />}
 
-                  <div className="form-box">
+                  <div className="">
                      <div className="button-group">
                         <button
                            className="prevBtn"

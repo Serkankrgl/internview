@@ -7,12 +7,12 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 //Local Req
-const { AdvertisementRoutes } = require("./routes")
+const { AdvertisementRoutes, ApplicationRoutes } = require("./routes");
 // App
 const app = express();
 
 //MiddleWare
-dotenv.config()
+dotenv.config();
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
@@ -31,13 +31,11 @@ mongoose
     process.exit(1);
   });
 
-  
-
-  app.use("/Advertisement",AdvertisementRoutes)
-
-  app.get('/Advertisement/isAlive',(req,res)=>{
-    console.log('Alive :>> ');
-  })
+app.use("/Advertisement", AdvertisementRoutes);
+app.use("/applications", ApplicationRoutes);
+app.get("/Advertisement/isAlive", (req, res) => {
+  console.log("Alive :>> ");
+});
 
 const APP_PORT = process.env.APP_PORT || 3010;
 app.listen(APP_PORT, () => {

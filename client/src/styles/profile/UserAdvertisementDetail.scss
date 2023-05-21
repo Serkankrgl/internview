@@ -1,0 +1,86 @@
+@import '../base/_mixins';
+@import '../base/_variables';
+.ap-wrapper {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+}
+
+.ad-info-box {
+   border: 1px red solid;
+   display: block;
+
+   h2 {
+      text-align: center;
+      padding: 0.8rem;
+   }
+
+   h4,
+   p,
+   ul,
+   li,
+   div {
+      padding: 0 0.8rem;
+   }
+}
+
+.aplicant-box {
+   border: 1px red solid;
+   padding: 0.8rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   // max-width: 50%;
+   float: inherit;
+
+   .ap-button-group {
+      display: inline;
+      float: right;
+   }
+   button {
+      margin: 0.4rem;
+   }
+   h2,
+   div,
+   small {
+      padding: 0.8rem;
+   }
+   a {
+      text-decoration: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: $borderRadius;
+      font-size: 1rem;
+      font-family: inherit;
+      background: $primary-400;
+      color: $light;
+      border: 1px solid transparent;
+      transition: 0.3s ease all;
+
+      &:hover {
+         border-color: $primary;
+         background: rgba($primary, 0.1);
+         color: $primary;
+      }
+      &:active {
+         border-color: $primary;
+         background: linear-gradient(rgba($primary, 0.2), rgba($primary, 0.3));
+         color: $primary;
+      }
+   }
+}
+
+.modal {
+   position: fixed;
+   width: 25%;
+   height: 25%;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(0, 0, 0, 0.8); /* Add a semi-transparent background */
+   z-index: 9999; /* Ensure the modal appears on top of other elements */
+}

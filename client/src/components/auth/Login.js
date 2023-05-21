@@ -59,10 +59,10 @@ export default function Login(props) {
             error: (err) => err?.response?.data?.msg ?? 'Bir şeyler yanlış gitti'
          });
          loginPromise.then((res) => {
-            let { _id, tokens } = res.data;
+            let { _id, full_name, email, tokens } = res.data;
             localStorage.setItem('access_token', tokens.access_token);
             localStorage.setItem('refresh_token', tokens.refresh_token);
-            localStorage.setItem('user_id', _id);
+            localStorage.setItem('user', JSON.stringify({ _id, full_name, email }));
             navigate('/');
          });
       } else {

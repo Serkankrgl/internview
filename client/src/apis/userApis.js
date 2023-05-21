@@ -3,7 +3,10 @@ import axios from 'axios';
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 
 const getUserId = () => {
-   return localStorage.getItem('user_id');
+   var x = JSON.parse(localStorage.getItem('user'));
+   JSON.parse(localStorage.getItem('user'));
+   console.log('object2 :>> ', x);
+   return x._id;
 };
 
 export async function updateResume(payload) {
@@ -25,7 +28,7 @@ export async function getResumeById(payload) {
 
       const { data } = await axios({
          method: 'GET',
-         url: 'UserServices/Users/getResume/' + getUserId(),
+         url: '/UserServices/Users/getResume/' + getUserId(),
          headers: { 'Content-Type': 'application/json' }
       });
 

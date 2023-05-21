@@ -5,6 +5,7 @@ import { Advertisement, Apply, Advertise } from 'components/advertisement';
 import { Login, Register } from 'components/auth';
 import { CollaborativeIde } from 'components/collaborativeIDE';
 import { Problems } from 'components/problems';
+import { Interview } from 'components/Interview';
 import Header from 'components/shared/Header';
 import Home from './components/Home';
 import {
@@ -13,6 +14,7 @@ import {
    Resume,
    UserApplications,
    UserAdvertisement,
+   UserAdvertisementDetail,
    Calender
 } from 'components/profile';
 import PageNotFound from './components/shared/PageNotFound';
@@ -79,11 +81,24 @@ const router = createBrowserRouter([
                },
                {
                   path: '/profile/UserAdvertisement',
-                  element: (
-                     <ProfileSideBar>
-                        <UserAdvertisement />
-                     </ProfileSideBar>
-                  )
+                  children: [
+                     {
+                        path: '/profile/UserAdvertisement',
+                        element: (
+                           <ProfileSideBar>
+                              <UserAdvertisement />
+                           </ProfileSideBar>
+                        )
+                     },
+                     {
+                        path: '/profile/UserAdvertisement/:id',
+                        element: (
+                           <ProfileSideBar>
+                              <UserAdvertisementDetail />
+                           </ProfileSideBar>
+                        )
+                     }
+                  ]
                },
                {
                   path: '/profile/Calender',
@@ -98,6 +113,10 @@ const router = createBrowserRouter([
          {
             path: '/collaborativeIDE',
             element: <CollaborativeIde />
+         },
+         {
+            path: '/interview/:id',
+            element: <Interview />
          },
          {
             path: '/problems',

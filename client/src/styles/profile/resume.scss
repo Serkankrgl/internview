@@ -1,12 +1,10 @@
 @import '../base/_mixins';
 @import '../base/_variables';
 
-* {
-}
 .resume-section {
    height: 89vh;
-   width: 80%;
-   overflow-y: overlay;
+   width: 100%;
+   overflow-y: auto;
    .footer {
       position: absolute;
       bottom: 0%;
@@ -20,12 +18,13 @@
 }
 .resume {
    display: flex;
-   flex-direction: row;
-   overflow-x: scroll;
-   -ms-overflow-style: none; /* IE and Edge */
-   scrollbar-width: none; /* Firefox */
-
+   // and use any flexbox property
    width: 79vw;
+
+   position: relative; // important point
+   overflow: auto;
+   -ms-overflow-style: none; /* for Internet Explorer, Edge */
+   scrollbar-width: none;
 
    a {
       color: #ffffff;
@@ -62,7 +61,7 @@
    .form-box {
       /* border: 1px solid red; */
       margin: 0vw;
-      padding: 3vw;
+      padding: 3rem;
       position: relative;
 
       /* position:relative for .prevBtn and .nextBtn position:absolute; */
@@ -76,8 +75,9 @@
          }
       }
       .right-field {
+         width: 70%;
          padding-left: 2rem;
-
+         float: left;
          // border: 2px red solid;
          .box {
             // border: 2px red solid;
@@ -137,44 +137,6 @@
       textarea {
          height: 15vh;
       }
-
-      .prevBtn,
-      .nextBtn,
-      .middleBtn {
-         // display: inline-block;
-         width: 30%;
-         height: 2rem;
-         border: 0;
-         // bottom: 0;
-         cursor: pointer;
-         font-size: 20px;
-         // position: absolute;
-      }
-
-      .prevBtn {
-         // margin: 1rem 0 1rem 0;
-         border-radius: 20px 0 0 20px;
-         // left: 4vw;
-      }
-      .middleBtn {
-         margin: 1rem 0 1rem 0;
-         // padding: 0 5rem;
-         border-radius: 0;
-         // left: 28vw;
-      }
-      .nextBtn {
-         // margin: 1rem 0 1rem 8rem;
-         // margin-left: 25%;
-         border-radius: 0 20px 20px 0;
-         // right: 4vw;
-      }
-      .button-group {
-         width: 100%;
-         // margin-left: 3vw;
-         margin-top: 2vh;
-         position: absolute;
-         bottom: 0;
-      }
    }
 }
 
@@ -187,6 +149,47 @@
       padding: 0.8rem;
       border-radius: $borderRadius;
       background-color: $primary-400;
+   }
+}
+.button-group {
+   // margin-left: 3vw;
+   position: absolute;
+   bottom: 0;
+
+   margin: 0vw;
+   width: 80vw;
+   justify-content: center;
+   align-items: center;
+
+   .prevBtn,
+   .nextBtn,
+   .middleBtn {
+      // display: inline-block;
+      width: 30%;
+      height: 2rem;
+      border: 0;
+      // bottom: 0;
+      cursor: pointer;
+      font-size: 20px;
+      // position: absolute;
+   }
+
+   .prevBtn {
+      margin: 1rem 0 1rem 5rem;
+      border-radius: 20px 0 0 20px;
+      // left: 4vw;
+   }
+   .middleBtn {
+      margin: 20px 0 20px 0;
+      margin: 1rem 0 1rem 0;
+      border-radius: 0;
+      // left: 28vw;
+   }
+   .nextBtn {
+      margin: 1rem 0 1rem 0rem;
+      // margin-left: 25%;
+      border-radius: 0 20px 20px 0;
+      // right: 4vw;
    }
 }
 .delete-button {

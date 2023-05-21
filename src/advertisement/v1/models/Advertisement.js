@@ -16,6 +16,7 @@ const AdvertisementSchema = new Mongoose.Schema(
     problems: [String],
     ad_owner: String,
     ad_owner_id: Mongoose.Schema.Types.ObjectId,
+    applications: [{}],
   },
   { versionKey: false, timestamps: true }
 );

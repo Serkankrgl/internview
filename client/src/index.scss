@@ -6,10 +6,7 @@
    padding: 0;
    box-sizing: border-box !important;
    font-family: 'Poppins', sans-serif;
-   overflow-x: hidden;
-   overflow-x: overlay;
-   -ms-overflow-style: none; /* IE and Edge */
-   scrollbar-width: none; /* Firefox */
+   // overflow-x: hidden;
 }
 html,
 body {
@@ -24,7 +21,9 @@ body {
    line-height: 1.6;
    position: relative;
    font-family: sans-serif;
-   overflow: auto;
+   &::-webkit-scrollbar {
+      display: none;
+   }
 }
 .page404 {
    display: flex;

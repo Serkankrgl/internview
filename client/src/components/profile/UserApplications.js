@@ -8,9 +8,13 @@ export default function UserApplications() {
 
    const { applications } = useSelector((state) => state.userStore);
    return (
-      <div>
+      <div className="content-box">
          {applications.map((application, index) => {
-            return <UserApplicationItem key={index} application={application} />;
+            return (
+               <div>
+                  <UserApplicationItem key={index} application={application} />
+               </div>
+            );
          })}
       </div>
    );

@@ -29,7 +29,7 @@ function ProfileSideBar({ children }) {
    return (
       <div className="fix">
          <SideBar />
-         {children}
+         <div className="content">{children}</div>
       </div>
    );
 }

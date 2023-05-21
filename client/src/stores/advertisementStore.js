@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
    advertisement: [],
-   selectedAd: {}
+   selectedAd: {},
+   adToApply: {}
 };
 
 const advertisement = createSlice({
@@ -12,6 +13,9 @@ const advertisement = createSlice({
       setSelectedAd: (state, payload) => {
          state.selectedAd = payload.payload;
       },
+      setAdToApply: (state, payload) => {
+         state.adToApply = payload.payload;
+      },
       setListOfAds: (state, payload) => {
          console.log('payload :>> ', payload);
          state.advertisement = payload.payload;
@@ -19,5 +23,5 @@ const advertisement = createSlice({
    }
 });
 
-export const { setSelectedAd, setListOfAds } = advertisement.actions;
+export const { setSelectedAd, setListOfAds, setAdToApply } = advertisement.actions;
 export default advertisement.reducer;

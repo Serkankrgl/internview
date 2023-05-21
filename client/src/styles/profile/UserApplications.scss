@@ -1,6 +1,12 @@
 @import '../base/_mixins';
 @import '../base/_variables';
-
+.content-box {
+   overflow-y: auto;
+   width: 100%;
+   max-height: 89vh;
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+}
 .application-container {
    margin: 2rem;
    padding: 0.8rem;
@@ -15,6 +21,7 @@
       font-size: large;
    }
    .detail-container {
+      position: initial;
       margin: 0.8rem 0;
       padding: 0.8rem;
       border: 2px coral solid;

@@ -1,0 +1,19 @@
+@import '../base/_mixins';
+@import '../base/_variables';
+
+.video-section {
+   float: left;
+   height: 89vh;
+   width: 20%;
+}
+.content-section {
+   overflow-y: auto;
+   width: 60%;
+   max-height: 89vh;
+   float: left;
+}
+.third-section {
+   float: left;
+   height: 89vh;
+   width: 20%;
+}

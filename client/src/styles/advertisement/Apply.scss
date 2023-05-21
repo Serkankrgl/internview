@@ -1,0 +1,26 @@
+@import '../base/_variables';
+
+.flex-div {
+   display: flex;
+
+   div,
+   p,
+   ul {
+      padding: 0.8rem;
+   }
+   button {
+      margin: 0.8rem;
+   }
+   h2 {
+      text-align: center;
+      padding: 0.8rem;
+   }
+   .flex-l {
+      width: 40vw;
+      border: 1px solid red;
+   }
+   .flex-r {
+      width: 60vw;
+      border: 1px solid red;
+   }
+}

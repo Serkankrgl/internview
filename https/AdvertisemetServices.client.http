@@ -1,5 +1,67 @@
+# List Ads
+GET {{hostname}}/AdvertisementServices/Advertisement/listAds/
+###
+
+# Apply for an Advertisement
+POST {{hostname}}/AdvertisementServices/Advertisement/createAd/
+Content-Type: application/json
+
+{"title":"İş İlanı - 7",
+"company":"Internview","companyURL":null,"company_info":"Görntülü Mülakat Dijital Çözümler.","location":"Sakarya","role":"Yazılımcı","seniority":"junior","employment_type":"Tam Zamanlı","description":"Görüntülü online mülakat sitemi hakkında merakli kendini geliştirmeye açık. Askerliğini yapmış.","requirement":[],"custom_question":[],"problem":[],"company_site":"http://localhost:3000/","ad_owner":"serkan Kuruoğlu","ad_owner_id":"6431f89378537ec3ef3e31be"}
 
 
-GET {{hostname}}/AdvertisementServices/Advertisement/listAds
+###
+# Get Ads By Id
+GET {{hostname}}/AdvertisementServices/Advertisement/getAdvertisementById/6469c5fb07ab213f265ceeb8
+###
+# Get Ads By Owner Id
+GET {{hostname}}/AdvertisementServices/Advertisement/getAdsByOwnerId/6431f89378537ec3ef3e31be
+###
+# Get all Applications
+GET {{hostname}}/AdvertisementServices/applications/getAll/
+###
 
-POST {{hostname}}/
+# Create an Application
+POST {{hostname}}/AdvertisementServices/applications/create/
+Content-Type: application/json
+
+{
+    "advertisementId": "6452b868a656f6c72ab473ab",
+    "userId": "6468f048d04f24546b05aedf",
+    "fullName": "Serkan Kuruoğlu",
+    "custom_question": [
+        {
+            "question": "test1",
+            "answer": "cevap1"
+        }
+    ]
+}
+
+###
+
+# Get Application by ID
+GET {{hostname}}/AdvertisementServices/applications/getById/64699dad53c2c55cd1e7bb18
+###
+# Get Application by ID
+GET {{hostname}}/AdvertisementServices/applications/getByAdId/6452b868a656f6c72ab473ab
+###
+# Update an Application
+PUT {{hostname}}/AdvertisementServices/applications/update/64699dad53c2c55cd1e7bb18
+Content-Type: application/json
+
+{
+    "advertisementId": "6452b868a656f6c72ab473ab",
+    "userId": "6468f048d04f24546b05aedf",
+    "fullName": "Serkan Kuruoğlu",
+    "custom_question": [
+        {
+            "question": "test1",
+            "answer": "cevap3"
+        }
+    ]
+}
+
+###
+
+# Delete an Application
+DELETE {{hostname}}/AdvertisementServices/applications/delete/64699dad53c2c55cd1e7bb18
