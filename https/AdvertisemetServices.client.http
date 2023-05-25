@@ -13,6 +13,10 @@ Content-Type: application/json
 ###
 # Get Ads By Id
 GET {{hostname}}/AdvertisementServices/Advertisement/getAdvertisementById/6469c5fb07ab213f265ceeb8
+
+###
+# Get Ads By Id
+GET {{hostname}}/WebRTCServices/api/room-exists/6469c5fb07ab213f265ceeb8
 ###
 # Get Ads By Owner Id
 GET {{hostname}}/AdvertisementServices/Advertisement/getAdsByOwnerId/6431f89378537ec3ef3e31be

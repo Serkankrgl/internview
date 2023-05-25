@@ -15,7 +15,7 @@
       "loadBalanceStrategy": "ROUND_ROBIN"
     },
     "AdvertisementServices": {
-      "index": "0",
+      "index": 0,
       "instances": [
         {
           "apiName": "AdvertisementServices",
@@ -23,6 +23,20 @@
           "host": "localhost",
           "port": 3010,
           "url": "http://localhost:3010/"
+        }
+      ],
+      "loadBalanceStrategy": "ROUND_ROBIN",
+      "enabled": true
+    },
+    "WebRTCServices": {
+      "index": "0",
+      "instances": [
+        {
+          "apiName": "WebRTCServices",
+          "protocol": "http",
+          "host": "localhost",
+          "port": 5008,
+          "url": "http://localhost:5008/"
         }
       ],
       "loadBalanceStrategy": "ROUND_ROBIN",
