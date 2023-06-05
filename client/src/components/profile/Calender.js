@@ -51,7 +51,6 @@ const Calendar = () => {
 
          // Format the date as "DD/MM/YYYY"
          const formattedDate = `${day}/${month}/${year}`;
-         console.log('for :>> ', formattedDate);
          const _filteredApplications = myApplications.filter((item) => {
             if (!item.interviewDate) {
                return false;
@@ -81,7 +80,6 @@ const Calendar = () => {
          return item.interviewDate == formattedDate;
       });
       setFilteredApplications(_filteredApplications);
-      console.log('filteredApplications :>> ', filteredApplications);
    }, [selectedDate, myApplications]);
 
    return (
@@ -129,7 +127,7 @@ const Calendar = () => {
                                  if (datex) {
                                     return (
                                        <td
-                                          key={datex}
+                                          key={index + i}
                                           className={
                                              datex.getMonth() === selectedDate.getMonth()
                                                 ? 'active'
@@ -140,7 +138,7 @@ const Calendar = () => {
                                        </td>
                                     );
                                  } else {
-                                    return <td></td>;
+                                    return <td key={index + i}></td>;
                                  }
                               })}
                            </tr>

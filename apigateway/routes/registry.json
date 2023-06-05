@@ -1,15 +1,14 @@
 {
   "services": {
     "UserServices": {
-      "index": 0,
+      "index": 1,
       "instances": [
         {
           "apiName": "UserServices",
           "protocol": "http",
           "host": "localhost",
           "port": 3002,
-          "url": "http://localhost:3002/",
-          "enabled": true
+          "url": "http://localhost:3002/"
         }
       ],
       "loadBalanceStrategy": "ROUND_ROBIN"
@@ -29,7 +28,7 @@
       "enabled": true
     },
     "WebRTCServices": {
-      "index": "0",
+      "index": 0,
       "instances": [
         {
           "apiName": "WebRTCServices",
@@ -37,6 +36,20 @@
           "host": "localhost",
           "port": 5008,
           "url": "http://localhost:5008/"
+        }
+      ],
+      "loadBalanceStrategy": "ROUND_ROBIN",
+      "enabled": true
+    },
+    "IDEService": {
+      "index": "0",
+      "instances": [
+        {
+          "apiName": "IDEService",
+          "protocol": "http",
+          "host": "localhost",
+          "port": 3090,
+          "url": "http://localhost:3090/"
         }
       ],
       "loadBalanceStrategy": "ROUND_ROBIN",

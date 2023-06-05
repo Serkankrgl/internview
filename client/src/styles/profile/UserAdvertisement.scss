@@ -5,9 +5,11 @@
    flex-wrap: wrap;
 }
 .ad-box {
-   border: 1px red solid;
+   border: 1px $primary solid;
+   border-radius: 32px;
    padding: 0.8rem;
-   max-width: 50%;
+   margin: 0.8rem;
+   max-width: 30%;
    float: left;
    h2,
    div,

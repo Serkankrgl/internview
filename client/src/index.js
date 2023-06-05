@@ -6,6 +6,7 @@ import './index.scss';
 import './styles/index.scss';
 import { Provider } from 'react-redux';
 import store from 'stores';
+import * as serviceWorker from './serviceWorker';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 // axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN'
@@ -53,3 +54,4 @@ ReactDOM.render(
    </>,
    document.getElementById('root')
 );
+serviceWorker.unregister();

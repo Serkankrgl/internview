@@ -69,3 +69,37 @@
       }
    }
 }
+.invite-content {
+   border: 1px solid $primary;
+   margin: 0.8rem;
+   border-radius: 32px;
+   .ap-button-group {
+      margin-top: 0.8rem;
+
+      height: 32px;
+      a {
+         cursor: pointer;
+         outline: none;
+         padding: 0.75rem 1.25rem;
+         border-radius: $borderRadius;
+         font-size: 1rem;
+         font-family: inherit;
+         background: $primary-400;
+         color: $light;
+         border: 1px solid transparent;
+         transition: 0.3s ease all;
+         text-decoration: none;
+
+         &:hover {
+            border-color: $primary;
+            background: rgba($primary, 0.1);
+            color: $primary;
+         }
+         &:active {
+            border-color: $primary;
+            background: linear-gradient(rgba($primary, 0.2), rgba($primary, 0.3));
+            color: $primary;
+         }
+      }
+   }
+}

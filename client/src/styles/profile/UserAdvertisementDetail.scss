@@ -4,11 +4,16 @@
    display: flex;
    flex-direction: column;
    flex-wrap: wrap;
+   margin: 0.8rem;
+   h2 {
+      margin: 0.8rem;
+   }
 }
 
 .ad-info-box {
-   border: 1px red solid;
+   // border: 1px orange solid;
    display: block;
+   margin: 0.8rem;
 
    h2 {
       text-align: center;
@@ -20,12 +25,14 @@
    ul,
    li,
    div {
+      margin: 0.2rem;
       padding: 0 0.8rem;
    }
 }
 
 .aplicant-box {
-   border: 1px red solid;
+   margin: 0.2rem 0.8rem;
+   border: 1px $primary solid;
    padding: 0.8rem;
    display: flex;
    justify-content: space-between;

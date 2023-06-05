@@ -1,7 +1,10 @@
 const { v4: uuidv4 } = require("uuid");
 const twilio = require("twilio");
 
-const createNewRoomHandler = (data, socket, connectedUsers, rooms) => {
+let connectedUsers = [];
+let rooms = [];
+
+const createNewRoomHandler = (data, socket) => {
   console.log("host is creating new room");
   console.log(data);
   const { identity, onlyAudio } = data;
@@ -30,7 +33,6 @@ const createNewRoomHandler = (data, socket, connectedUsers, rooms) => {
   socket.join(roomId);
 
   rooms = [...rooms, newRoom];
-
   // emit to that client which created that room roomId
   socket.emit("room-id", { roomId });
 
@@ -39,9 +41,9 @@ const createNewRoomHandler = (data, socket, connectedUsers, rooms) => {
   socket.emit("room-update", { connectedUsers: newRoom.connectedUsers });
 };
 
-const joinRoomHandler = (data, socket, connectedUsers, rooms, io) => {
+const joinRoomHandler = (data, socket, io) => {
   const { identity, roomId, onlyAudio } = data;
-
+  console.log("join activate");
   const newUser = {
     identity,
     id: uuidv4(),
@@ -53,7 +55,6 @@ const joinRoomHandler = (data, socket, connectedUsers, rooms, io) => {
   // join room as user which just is trying to join room passing room id
   const room = rooms.find((room) => room.id === roomId);
   room.connectedUsers = [...room.connectedUsers, newUser];
-
   // join socket.io room
   socket.join(roomId);
 
@@ -74,7 +75,7 @@ const joinRoomHandler = (data, socket, connectedUsers, rooms, io) => {
   io.to(roomId).emit("room-update", { connectedUsers: room.connectedUsers });
 };
 
-const disconnectHandler = (socket, connectedUsers, rooms, io) => {
+const disconnectHandler = (socket, io) => {
   // find if user has been registered - if yes remove him from room and connected users array
   const user = connectedUsers.find((user) => user.socketId === socket.id);
 
@@ -145,6 +146,7 @@ const directMessageHandler = (data, socket, io) => {
 
 const checkRoomExists = (req, res) => {
   const { roomId } = req.params;
+
   const room = rooms.find((room) => room.id === roomId);
 
   if (room) {
@@ -161,8 +163,8 @@ const checkRoomExists = (req, res) => {
 };
 
 const getTurnCredentials = (req, res) => {
-  const accountSid = "AC7cff1792ce0f8d410f4790a5048eeeb7";
-  const authToken = "c9f5e65fe22c2e6764d5ca5530d4970c";
+  const accountSid = "AC321a3606902bdaffb21aa810be6bc440";
+  const authToken = "b1b6110334d479640e093523be99e60a";
   const client = twilio(accountSid, authToken);
 
   try {

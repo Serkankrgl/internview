@@ -1,0 +1,32 @@
+.code-editor {
+   display: flex;
+   height: 100%;
+   width: 100%;
+   overflow: hidden;
+}
+
+.code-editor__textarea {
+   flex: 1;
+   font-family: 'Consolas', monospace;
+   font-size: 14px;
+   line-height: 1.5;
+   padding: 10px;
+   background-color: #1e1e1e;
+   color: #d4d4d4;
+   border: none;
+   resize: none;
+}
+
+.code-editor__preview {
+   flex: 1;
+   font-family: 'Consolas', monospace;
+   font-size: 14px;
+   line-height: 1.5;
+   padding: 10px;
+   background-color: #1e1e1e;
+   color: #d4d4d4;
+   border: none;
+   margin: 0;
+   white-space: pre-wrap;
+   overflow-wrap: break-word;
+}

@@ -2,13 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import advertisement from './advertisementStore';
 import userStore from './userStore';
-import interviewReducer from './interviewStore/interviewReducers';
+import InterviewStore from './interviewStore';
 
 const store = configureStore({
    reducer: {
       advertisement,
       userStore,
-      interviewReducer
+      InterviewStore
    }
 });
 

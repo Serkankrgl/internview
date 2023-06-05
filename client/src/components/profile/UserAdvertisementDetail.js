@@ -4,7 +4,9 @@ import { getApplicationsByAdId, updateApplication } from 'apis/application';
 import { getAdvertisementById } from 'apis/advertisement';
 import toast, { Toaster } from 'react-hot-toast';
 import 'styles/profile/UserAdvertisementDetail.scss';
+import { Link, useNavigate } from 'react-router-dom';
 export default function UserAdvertisementDetail() {
+   const navigate = useNavigate();
    const { id } = useParams();
    const [aplications, setAplications] = useState([]);
    const [advertisement, setAdvertisement] = useState({});
@@ -111,6 +113,12 @@ export default function UserAdvertisementDetail() {
                               setFocusedApplication(value);
                            }}>
                            Mülakat tarihi gönder
+                        </button>
+                        <button
+                           onClick={() => {
+                              navigate(`/Preinterview/${value._id}?host=true`);
+                           }}>
+                           Mülakata katıl
                         </button>
                         <button>Adayı Ele</button>
                      </div>

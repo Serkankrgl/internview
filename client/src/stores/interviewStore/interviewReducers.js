@@ -39,5 +39,9 @@ const interviewReducer = (state = initialState, action) => {
          return state;
    }
 };
-
-export default interviewReducer;
+const InterviewStore = createSlice({
+   name: 'InterviewStore',
+   initialState,
+   reducer: interviewReducer
+});
+export default InterviewStore.reducer;

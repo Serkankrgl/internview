@@ -8,6 +8,6 @@ export const getRoomExists = async (roomId) => {
 };
 
 export const getTURNCredentials = async () => {
-   const response = await axios.get(`/WebRTCServices/api/get-turn-credentials`);
+   const response = await axios.get(`/WebRTCServices/api/get-turn-credentials/`);
    return response.data;
 };

@@ -8,6 +8,16 @@
    font-family: 'Poppins', sans-serif;
    // overflow-x: hidden;
 }
+
+.videos_portal_styles {
+   width: 60%;
+   height: calc(100vh - 10%);
+   left: 0;
+   top: 0;
+   display: flex;
+   flex-wrap: wrap;
+}
+
 html,
 body {
    height: 100%;

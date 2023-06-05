@@ -1,0 +1,16 @@
+@import './base/_mixins';
+@import './base/_variables';
+
+.splash {
+   display: flex;
+
+   flex-direction: column;
+   justify-content: center; /* Center horizontally */
+   align-items: center; /* Center vertically */
+   height: 89vh; /* Adjust the height as needed */
+
+   h2,
+   h3 {
+      text-align: center; /* Center the text within the <h2> element */
+   }
+}
