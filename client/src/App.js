@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 /** import all components */
 import { Advertisement, Apply, Advertise } from 'components/advertisement';
 import { Login, Register } from 'components/auth';
-import { CollaborativeIde } from 'components/collaborativeIDE';
+import { CollaborativeIde, CollaborativeEditor } from 'components/collaborativeIDE';
 import { Problems } from 'components/problems';
 import { Interview } from 'components/Interview';
 import Header from 'components/shared/Header';
@@ -127,9 +127,19 @@ const router = createBrowserRouter([
                }
             ]
          },
+
          {
             path: '/collaborativeIDE',
-            element: <CollaborativeIde />
+            children: [
+               {
+                  path: '/collaborativeIDE',
+                  element: <CollaborativeIde />
+               },
+               {
+                  path: '/collaborativeIDE/Editor',
+                  element: <CollaborativeEditor />
+               }
+            ]
          },
          {
             path: '/JoinMeeting',

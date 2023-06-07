@@ -1,3 +1,4 @@
-import CollaborativeIde from './CollaborativeIde'
+import CollaborativeIde from './CollaborativeIde';
+import CollaborativeEditor from './CollaborativeEditor';
 
-export { CollaborativeIde }
+export { CollaborativeIde, CollaborativeEditor };

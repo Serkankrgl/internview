@@ -1,0 +1,168 @@
+/* styles/shared/CodeEditorScrollable.scss */
+
+/* Temel container için stiller */
+.code-editor {
+   display: flex;
+   flex-direction: column;
+   width: 900px !important; /* İstediğiniz genişliği buradan ayarlayabilirsiniz */
+   height: 600px !important; /* İstediğiniz yüksekliği buradan ayarlayabilirsiniz */
+   overflow: auto; /* Scroll özelliği ekleniyor */
+}
+
+/* Araç çubuğu için stiller */
+.code-editor-toolbar {
+   display: flex;
+   align-items: center;
+   padding: 8px;
+   background-color: #282a36;
+   color: #f8f8f2;
+}
+
+/* Dil seçimi etiketi için stiller */
+.code-editor-toolbar label {
+   margin-right: 8px;
+}
+
+/* Dil seçim açılır menüsü için stiller */
+.code-editor-toolbar select {
+   padding: 4px;
+   background-color: #44475a;
+   color: #f8f8f2;
+   border: none;
+   border-radius: 4px;
+}
+
+/* Kod düzenleyici için stiller */
+.CodeMirror {
+   width: 100%; /* Genişliği %100 yapılıyor */
+   height: 100%; /* Yüksekliği %100 yapılıyor */
+   font-family: monospace;
+}
+
+/* Satır numaraları için stiller */
+.CodeMirror-gutter {
+   background-color: #44475a;
+   color: #f8f8f2;
+}
+
+/* Aktif satır için stiller */
+.CodeMirror-activeline-background {
+   background-color: #282a36;
+}
+
+/* Kod renklendirmesi için stiller */
+.cm-s-dracula.CodeMirror {
+   background-color: #282a36;
+   color: #f8f8f2;
+}
+
+/* Seçili metin için stiller */
+.cm-s-dracula .CodeMirror-selected {
+   background-color: #44475a;
+}
+
+/* İmleç için stiller */
+.cm-s-dracula .CodeMirror-cursor {
+   border-left: solid 2px #f8f8f2;
+}
+
+/* Satır numaraları için stiller */
+.cm-s-dracula .CodeMirror-linenumber {
+   color: #6272a4;
+}
+
+/* Düzenleyici boyutlandırma stilleri */
+.CodeMirror-scroll {
+   //    height: 100%; /* Yüksekliği %100 yapılıyor */
+   height: 600px;
+}
+
+/* CollaborativeIDE.scss */
+
+.App {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 20px;
+}
+
+.output {
+   margin-top: 20px;
+}
+
+pre {
+   background-color: #282a36;
+   color: #f8f8f2;
+   padding: 10px;
+   font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+   background-color: #bd93f9;
+   color: #f8f8f2;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 4px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+
+   &:hover {
+      background-color: #9d7cd8;
+   }
+}
+
+.code-editor {
+   position: relative;
+}
+
+.code-editor-toolbar {
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.label {
+   margin-right: 10px;
+}
+
+.select {
+   padding: 5px;
+   font-size: 14px;
+}
+
+/* JavaScript mode styles */
+.cm-s-dracula .cm-keyword {
+   color: #ff79c6;
+}
+
+.cm-s-dracula .cm-variable {
+   color: #bd93f9;
+}
+
+.cm-s-dracula .cm-string {
+   color: #f1fa8c;
+}
+
+.cm-s-dracula .cm-comment {
+   color: #6272a4;
+   font-style: italic;
+}
+
+/* Python mode styles */
+.cm-s-dracula .cm-def {
+   color: #bd93f9;
+}
+
+.cm-s-dracula .cm-variable-2 {
+   color: #ffb86c;
+}
+
+.cm-s-dracula .cm-string {
+   color: #f1fa8c;
+}
+
+.cm-s-dracula .cm-comment {
+   color: #6272a4;
+   font-style: italic;
+}

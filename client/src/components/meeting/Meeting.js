@@ -63,15 +63,6 @@ export default function Meeting() {
          <div className="content-section">
             {' '}
             <MeetingParticipants />
-            <div className="info">
-               <div className="box">UserInfo</div>
-               <div className="box">UserInfo</div>
-               <div className="box">UserInfo</div>
-               <div className="box">UserInfo</div>
-               <div className="box">UserInfo</div>
-               <div className="box">UserInfo</div>
-               <div className="box">UserInfo</div>
-            </div>
          </div>
          <div className="third-section">
             <ChatSection />
