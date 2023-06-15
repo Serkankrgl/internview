@@ -164,7 +164,7 @@ const checkRoomExists = (req, res) => {
 
 const getTurnCredentials = (req, res) => {
   const accountSid = "AC321a3606902bdaffb21aa810be6bc440";
-  const authToken = "fe55c43349fc5f4cfead8b67c3452800";
+  const authToken = "6ef770d431c6de68115186a81b3ba382";
   const client = twilio(accountSid, authToken);
 
   try {

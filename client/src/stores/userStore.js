@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { setApplication } from './advertisementStore';
 
 const initialState = {
    resume: {},
@@ -106,9 +107,12 @@ const userStore = createSlice({
    reducers: {
       setResume: (state, payload) => {
          state.resume = payload.payload;
+      },
+      setApplications: (state, payload) => {
+         state.applications = payload.payload;
       }
    }
 });
 
-export const { setResume } = userStore.actions;
+export const { setResume, setApplications } = userStore.actions;
 export default userStore.reducer;

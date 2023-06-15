@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import plussvg from 'assets/plus.svg';
 import { createAd } from 'apis/advertisement';
+import { useNavigate } from 'react-router';
+
 export default function Advertise() {
    const [formData, setFormData] = useState({
       title: null,
@@ -17,7 +19,7 @@ export default function Advertise() {
       problem: []
    });
    const [formx, setFormx] = useState([]);
-
+   const navigate = useNavigate();
    const requirementRef = useRef(null);
    const customQuestionRef = useRef(null);
    const problemRef = useRef(null);
@@ -39,12 +41,15 @@ export default function Advertise() {
       requirementRef.current.value = '';
       console.log('formData :>> ', formData);
    };
-   // const removeRequirement = (index) => {
-   //    const newRequirement = formData.requirement;
-   //    newRequirement.slice(index, 1);
-   //    formData.requirement = newRequirement;
-   //    setFormData(formData);
-   // };
+   const removeRequirement = (index) => {
+      const newRequirement = [...formData.requirement];
+      newRequirement.splice(index, 1);
+
+      setFormData((prevFormData) => ({
+         ...prevFormData,
+         requirement: newRequirement
+      }));
+   };
 
    const AddCustomQuestion = () => {
       const newCustomQuestion = [...formData.custom_question, customQuestionRef.current.value];
@@ -64,13 +69,21 @@ export default function Advertise() {
       setFormData(formData);
       setFormx(newProblem);
       problemRef.current.value = '0';
-      console.log('formData :>> ', formData);
+   };
+   const removeCustomQuestion = (index) => {
+      const newCustomQuestions = [...formData.custom_question];
+      newCustomQuestions.splice(index, 1);
+
+      setFormData((prevFormData) => ({
+         ...prevFormData,
+         custom_question: newCustomQuestions
+      }));
    };
 
    const Advertise = (e) => {
       e.preventDefault();
       createAd(formData);
-      console.log('formDataAdd :>> ', formData);
+      navigate('/advertisement');
    };
 
    return (
@@ -134,9 +147,14 @@ export default function Advertise() {
                      <ul>
                         {Object.entries(formData.requirement).map((Item, index) => {
                            return (
-                              <li key={index}>
+                              <li key={'R' + index}>
                                  <p>{Item[1]} </p>
-                                 <button>Sil</button>
+                                 <button
+                                    onClick={() => {
+                                       removeRequirement(index);
+                                    }}>
+                                    Sil
+                                 </button>
                               </li>
                            );
                         })}
@@ -157,37 +175,9 @@ export default function Advertise() {
                      <ul>
                         {Object.entries(formData.custom_question).map((Item, index) => {
                            return (
-                              <li key={index}>
+                              <li key={'C' + index}>
                                  <p>{Item[1]} </p>
-                                 <button>Sil</button>
-                              </li>
-                           );
-                        })}
-                     </ul>
-                  </div>
-
-                  <div className="advertise-container-form-group w-30">
-                     <div className="input-group">
-                        <select
-                           defaultValue="0"
-                           className="input-container"
-                           ref={problemRef}
-                           name="problem">
-                           <option value="0"> Problem Seç</option>
-                           <option value="1"> Problem Seç2</option>
-                           <option value="2"> Problem Seç3</option>
-                        </select>
-
-                        <button onClick={AddProblem} type="button">
-                           <img src={plussvg} alt="React Logo" />
-                        </button>
-                     </div>
-                     <ul>
-                        {Object.entries(formData.problem).map((Item, index) => {
-                           return (
-                              <li key={index}>
-                                 <p>{Item[1].text} </p>
-                                 <button>Sil</button>
+                                 <button onClick={() => removeCustomQuestion(index)}>Sil</button>
                               </li>
                            );
                         })}

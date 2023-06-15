@@ -73,6 +73,8 @@
    border: 1px solid $primary;
    margin: 0.8rem;
    border-radius: 32px;
+   padding: 0.8rem;
+
    .ap-button-group {
       margin-top: 0.8rem;
 
@@ -86,9 +88,10 @@
          font-family: inherit;
          background: $primary-400;
          color: $light;
-         border: 1px solid transparent;
+         border: 3px solid transparent;
          transition: 0.3s ease all;
          text-decoration: none;
+         padding: 12px;
 
          &:hover {
             border-color: $primary;

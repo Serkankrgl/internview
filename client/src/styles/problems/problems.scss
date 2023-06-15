@@ -1,0 +1,49 @@
+.problems {
+   margin: 0.8rem;
+   .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+   }
+
+   h1 {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #4a4a4a;
+   }
+
+   ul {
+      list-style-type: none;
+      padding: 0;
+   }
+
+   li {
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 1px solid #333333;
+      border-radius: 4px;
+      background-color: #2d2d2d;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+   }
+
+   h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ffffff;
+   }
+
+   p {
+      margin-bottom: 10px;
+      color: #bcbcbc;
+   }
+
+   strong {
+      font-weight: bold;
+   }
+
+   div {
+      margin-bottom: 5px;
+   }
+}

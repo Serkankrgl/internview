@@ -19,10 +19,9 @@ export async function listAds(payload) {
 }
 
 export async function createAd(payload) {
-   console.log('mPayload :>> ', mPayload);
    var userInfo = getUserObject();
    var mPayload = { ...payload, ad_owner: userInfo.full_name, ad_owner_id: userInfo._id };
-   console.log('mPayload :>> ', mPayload);
+
    try {
       const { data } = await axios.post('/AdvertisementServices/Advertisement/createAd/', mPayload);
 
@@ -51,6 +50,28 @@ export const getAdvertisementById = (AdvertisementID) => {
          .then((response) => resolve(response.data))
          .catch((error) => reject(new Error(error)));
    });
+};
+
+export const AdvertisementsByUserId = async (userId) => {
+   try {
+      const response = await axios.get(
+         `/AdvertisementServices/Advertisement/advertisements/${userId}`
+      );
+      return response.data;
+   } catch (error) {
+      console.error(error);
+      throw new Error('An error occurred while fetching advertisements.');
+   }
+};
+
+export const removeAdvertisementsById = async (AdId) => {
+   try {
+      const response = await axios.delete(`/AdvertisementServices/Advertisement/deleteAd/${AdId}`);
+      return response.data;
+   } catch (error) {
+      console.error(error);
+      throw new Error('An error occurred while deleting advertisements.');
+   }
 };
 
 export async function updateAd() {}

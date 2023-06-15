@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { setIsRoomHost, setIdentity } from 'stores/interviewStore';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import 'styles/interview/JoinMeeting.scss';
 export default function JoinMeeting() {
    const { isRoomHost, roomId } = useSelector((state) => state.InterviewStore);
    const [nameValue, setNameValue] = useState('');
@@ -30,7 +31,7 @@ export default function JoinMeeting() {
    // Handling End
 
    return (
-      <div>
+      <div className="join-meeting-container">
          <Input
             placeholder="Adınızı giriniz"
             value={nameValue}

@@ -54,6 +54,20 @@
       ],
       "loadBalanceStrategy": "ROUND_ROBIN",
       "enabled": true
+    },
+    "ProblemService": {
+      "index": "0",
+      "instances": [
+        {
+          "apiName": "ProblemService",
+          "protocol": "http",
+          "host": "localhost",
+          "port": 4001,
+          "url": "http://localhost:4001/"
+        }
+      ],
+      "loadBalanceStrategy": "ROUND_ROBIN",
+      "enabled": true
     }
   }
 }

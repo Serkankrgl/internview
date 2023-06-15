@@ -80,7 +80,6 @@ const getConfiguration = () => {
 const messengerChannel = 'messenger';
 
 export const prepareNewPeerConnection = (connUserSocketId, isInitiator) => {
-   console.log('peer1 :>> ', peers);
    const configuration = getConfiguration();
 
    peers[connUserSocketId] = new Peer({
@@ -89,7 +88,6 @@ export const prepareNewPeerConnection = (connUserSocketId, isInitiator) => {
       stream: localStream,
       channelName: messengerChannel
    });
-   console.log('peer2 :>> ', peers);
    peers[connUserSocketId].on('signal', (data) => {
       const signalData = {
          signal: data,
@@ -98,22 +96,18 @@ export const prepareNewPeerConnection = (connUserSocketId, isInitiator) => {
 
       wss.signalPeerData(signalData);
    });
-   console.log('peer3 :>> ');
    peers[connUserSocketId].on('stream', (stream) => {
       console.log('New stream came');
 
       addStream(stream, connUserSocketId);
       streams = [...streams, stream];
    });
-   console.log('peer4 :>> ', connUserSocketId);
    {
    }
    peers[connUserSocketId].on('data', (data) => {
-      console.log('Gir Amk :>> ', data);
       const messageData = JSON.parse(data);
       appendNewMessage(messageData);
    });
-   console.log('peer5 :>> ', connUserSocketId);
 };
 
 export const handleSignalingData = (data) => {

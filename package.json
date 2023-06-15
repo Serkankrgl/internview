@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:all": "concurrently --kill-others \"npm run start:apigateway\" \"npm run start:user\" \"npm run start:advertisement\" \"npm run start:client\"",
+    "start:all": "concurrently --kill-others \"npm run start:apigateway\" \"npm run start:user\" \"npm run start:advertisement\" \"npm run start:client\" \"npm run start:problems\" \"npm run start:webrtc\" \"npm run start:ide\"",
     "start:apigateway": "npm --prefix .\\apigateway run dev",
     "start:user": "npm --prefix .\\src\\user\\v1\\ run dev",
     "start:advertisement": "npm --prefix .\\src\\advertisement\\v1\\ run dev",
-    "start:client": "npm --prefix .\\client\\ start"
+    "start:client": "npm --prefix .\\client\\ start",
+    "start:problems": "npm --prefix .\\src\\Problem\\v1\\ run dev",
+    "start:webrtc": "npm --prefix .\\src\\WebRTC\\ run dev",
+    "start:ide": "npm --prefix .\\src\\CollaborativeIDE\\ run dev"
   },
   "keywords": [],
   "author": "",

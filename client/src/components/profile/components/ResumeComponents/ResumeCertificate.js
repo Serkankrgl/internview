@@ -34,6 +34,12 @@ export default function ResumeCertificate() {
       dispatch(setResume(newResume));
    }, [certificateList, dispatch]);
 
+   const removeCertificate = (index) => {
+      const updatedCertificateList = [...certificateList];
+      updatedCertificateList.splice(index, 1);
+      setCertificateList(updatedCertificateList);
+   };
+
    return (
       <div className="form-box">
          <form onSubmit={(e) => e.preventDefault()}>
@@ -86,7 +92,12 @@ export default function ResumeCertificate() {
                            <small>Kurum: {certificate.agency}</small>
                            <p>Yeterlilik Kimliği: {certificate.certificate_identity}</p>
                         </div>
-                        <img className="icon" src={trashCan} alt="React Logo" />
+                        <img
+                           onClick={() => removeCertificate(index)}
+                           className="icon"
+                           src={trashCan}
+                           alt="React Logo"
+                        />
                      </div>
                   ))}
                </div>

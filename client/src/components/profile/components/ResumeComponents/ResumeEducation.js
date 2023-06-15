@@ -39,8 +39,10 @@ export default function ResumeEducation() {
       dispatch(setResume(newResume));
    }, [educationList, dispatch]);
 
-   const handleDelete = () => {
-      alert('x');
+   const removeEducation = (index) => {
+      const updatedEducationList = [...educationList];
+      updatedEducationList.splice(index, 1);
+      setEducationList(updatedEducationList);
    };
    return (
       <div className="form-box">
@@ -100,7 +102,12 @@ export default function ResumeEducation() {
                               {item.is_current ? 'Devam ediyor.' : item.end_date}
                            </p>
                         </div>
-                        <img className="icon" src={trashCan} alt="React Logo" />
+                        <img
+                           onClick={() => removeEducation(index)}
+                           className="icon"
+                           src={trashCan}
+                           alt="React Logo"
+                        />
                      </div>
                   ))}
                </div>

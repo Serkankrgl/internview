@@ -63,7 +63,7 @@ export default function AdDetail() {
                      {selectedAd.requirement.map((req, index) => {
                         return (
                            <>
-                              <p key={index}>
+                              <p key={'R+' + index}>
                                  {'* '}
                                  {req}
                               </p>

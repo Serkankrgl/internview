@@ -39,6 +39,13 @@ export default function ResumeExpreience() {
       const newResume = { ...resume, experiences: experienceList };
       dispatch(setResume(newResume));
    }, [experienceList, dispatch]);
+
+   const removeExperience = (index) => {
+      const updatedExperienceList = [...experienceList];
+      updatedExperienceList.splice(index, 1);
+      setExperienceList(updatedExperienceList);
+   };
+
    return (
       <div className="form-box">
          <form onSubmit={(e) => e.preventDefault()}>
@@ -97,7 +104,12 @@ export default function ResumeExpreience() {
                               {experience.is_current ? 'Devam ediyor.' : experience.end_date}
                            </p>
                         </div>
-                        <img className="icon" src={trashCan} alt="React Logo" />
+                        <img
+                           onClick={() => removeExperience(index)}
+                           className="icon"
+                           src={trashCan}
+                           alt="React Logo"
+                        />
                      </div>
                   ))}
                </div>

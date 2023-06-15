@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import 'styles/advertisement/Apply.scss';
 import { createApplication } from 'apis/application';
 import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router';
+
 export default function Apply() {
    const [application, setApplication] = useState({
       advertisementId: '',
@@ -12,7 +14,7 @@ export default function Apply() {
    });
 
    const { adToApply } = useSelector((state) => state.advertisement);
-
+   const navigate = useNavigate();
    const updateCustomQuestion = (index, value) => {
       setApplication((prevApplication) => {
          const updatedCustomQuestion = [...prevApplication.custom_question];
@@ -60,16 +62,23 @@ export default function Apply() {
                <div>
                   <h4>Aranan Özellikler</h4>
                   <ul>
-                     {adToApply?.requirement?.map((req, index) => <li key={index}>{req}</li>) || ''}
+                     {adToApply?.requirement?.map((req, index) => (
+                        <li key={'req' + index}>{req}</li>
+                     )) || ''}
                   </ul>
                </div>
                <button onClick={complateAplication}>Başvuruyu tamamla</button>
-               <button>Geri Dön</button>
+               <button
+                  onClick={() => {
+                     navigate('/advertisement');
+                  }}>
+                  Geri Dön
+               </button>
             </div>
             <div className="flex-r">
                <div>
-                  {adToApply?.custom_question.map((cq, index) => (
-                     <div key={index}>
+                  {adToApply?.custom_question?.map((cq, index) => (
+                     <div key={'Q' + index}>
                         <p>{cq}</p>
                         <input
                            value={application.custom_question[index]?.answer || ''}

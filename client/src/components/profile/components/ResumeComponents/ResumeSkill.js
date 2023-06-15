@@ -24,6 +24,11 @@ export default function ResumeSkill() {
       dispatch(setResume(newResume));
    }, [skillList, dispatch]);
 
+   const removeSkill = (index) => {
+      const updatedSkillList = [...skillList];
+      updatedSkillList.splice(index, 1);
+      setSkillList(updatedSkillList);
+   };
    return (
       <div className="form-box">
          <form onSubmit={(e) => e.preventDefault()}>
@@ -50,7 +55,12 @@ export default function ResumeSkill() {
                            justifyContent: 'space-between'
                         }}>
                         <p>{skill}</p>
-                        <img className="icon" src={trashCan} alt="React Logo" />
+                        <img
+                           onClick={() => removeSkill(index)}
+                           className="icon"
+                           src={trashCan}
+                           alt="React Logo"
+                        />
                      </div>
                   ))}
                </div>

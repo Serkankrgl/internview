@@ -1,0 +1,57 @@
+.problem-form-container {
+   max-width: 600px;
+   margin: 0 auto;
+   padding: 20px;
+}
+
+.problem-form-label {
+   margin-bottom: 10px;
+   font-weight: bold;
+   display: block;
+}
+
+.problem-form-input {
+   padding: 8px;
+   margin-bottom: 10px;
+   width: 100%;
+}
+
+.problem-form-textarea {
+   padding: 8px;
+   margin-bottom: 10px;
+   width: 100%;
+   resize: vertical;
+}
+
+.problem-form-section-title {
+   margin-top: 20px;
+}
+
+.problem-form-section-subtitle {
+   margin-top: 10px;
+}
+
+.problem-form-button {
+   padding: 8px 16px;
+   background-color: #007bff;
+   color: #fff;
+   border: none;
+   cursor: pointer;
+}
+
+.problem-form-button[type='button'] {
+   background-color: #6c757d;
+}
+/* ProblemForm.scss */
+
+.problem-form-select {
+   width: 100%;
+   padding: 8px;
+   font-size: 16px;
+   border-radius: 4px;
+   border: 1px solid #ccc;
+}
+
+.problem-form-select option {
+   padding: 8px;
+}

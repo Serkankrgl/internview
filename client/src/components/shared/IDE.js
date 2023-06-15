@@ -13,12 +13,13 @@ import CodeEditor from './Editor';
 
 import 'styles/shared/IDE.scss'; // Stil dosyasını içe aktar
 
-function App() {
+function App({ defCode, justjs = false }) {
    const [code, setCode] = useState('');
    const [output, setOutput] = useState('');
    const [language, setLanguage] = useState('javascript');
 
    useEffect(() => {
+      setCode(defCode == null ? '' : defCode);
       subscribeToUpdateCode((supdatedCode) => {
          console.log('test1 :>> ', supdatedCode);
          setCode(supdatedCode);
@@ -26,7 +27,7 @@ function App() {
 
       subscribeToOutput((data) => {
          console.log('data :>> ', data);
-         setOutput((prevOutput) => prevOutput + data);
+         setOutput(data);
       });
       subscribeToLanguageChanged((language) => {
          console.log('language :>> ', language);
@@ -61,6 +62,7 @@ function App() {
             language={language}
             onCodeChange={handleCodeChange}
             onLanguageChange={handleLanguageChange}
+            justjs={justjs}
          />
          <div className="output">
             <pre>{output}</pre>

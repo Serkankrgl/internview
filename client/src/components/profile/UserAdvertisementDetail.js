@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getApplicationsByAdId, updateApplication } from 'apis/application';
-import { getAdvertisementById } from 'apis/advertisement';
+import { getApplicationsByAdId, updateApplication, deleteApplication } from 'apis/application';
+import { getAdvertisementById, removeAdvertisementsById } from 'apis/advertisement';
 import toast, { Toaster } from 'react-hot-toast';
 import 'styles/profile/UserAdvertisementDetail.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { setApplication } from 'stores/advertisementStore';
+import { setRoomId } from 'stores/interviewStore';
+import { getRoomExists } from 'apis/webRtcApis';
+import { useDispatch } from 'react-redux';
+import PDFRender from './components/ResumePdfComponents/PDFRender';
+import trashCan from 'assets/trash.svg';
 export default function UserAdvertisementDetail() {
    const navigate = useNavigate();
+   const dispatch = useDispatch();
    const { id } = useParams();
    const [aplications, setAplications] = useState([]);
    const [advertisement, setAdvertisement] = useState({});
    const [openInterviewModal, setOpenInterviewModal] = useState(false);
+   const [openQuestionModal, setOpenQuestionModal] = useState(false);
+   const [showPDF, setShofPDF] = useState(false);
+   openConfirmModal;
+   const [openConfirmModal, setopenConfirmModal] = useState(false);
+
    const [focusedApplication, setFocusedApplication] = useState('');
    const fetchData = () => {
       let apPromise = getApplicationsByAdId(id);
@@ -20,6 +32,8 @@ export default function UserAdvertisementDetail() {
          Promise.all([apPromise, adPromise])
             .then(([apRes, adRes]) => {
                setAplications(apRes);
+
+               console.log('answer :>> ', aplications);
                setAdvertisement(adRes);
             })
             .catch((err) => {
@@ -41,6 +55,19 @@ export default function UserAdvertisementDetail() {
       fetchData();
    }, []);
 
+   const handleJoin = async (Application) => {
+      const responseMessage = await getRoomExists(Application.interviewLocation);
+      const { roomExists, full } = responseMessage;
+      dispatch(setApplication(Application));
+      if (roomExists) {
+         dispatch(setRoomId(Application.interviewLocation));
+
+         navigate(`/JoinMeeting`);
+      } else {
+         dispatch(setRoomId(null));
+         navigate(`/JoinMeeting?host=true`);
+      }
+   };
    const handleInputChange = (event) => {
       const target = event.target;
       const value = target.value;
@@ -57,6 +84,15 @@ export default function UserAdvertisementDetail() {
 
       setFocusedApplication(focusedApplication);
    };
+   const handleRemove = () => {
+      var prom = removeAdvertisementsById(advertisement._id);
+      prom.then((res) => {
+         toast.success('Kayıt sılindi profil sayfasına yönlendiriliyorsunuz.');
+         setTimeout(() => {
+            navigate('/profile/UserAdvertisement');
+         }, 3000);
+      });
+   };
    const sendInvite = (e) => {
       e.preventDefault();
       console.log('focusedApplication :>> ', focusedApplication);
@@ -71,10 +107,29 @@ export default function UserAdvertisementDetail() {
          setOpenInterviewModal(false);
       });
    };
+   const handleRemoveApplication = (appId) => {
+      let deletePromis = deleteApplication(appId);
+      toast.promise(deletePromis, {
+         loading: 'İşlem Yapılıyor...',
+         success: 'İşlemi başarılı...!',
+         error: (err) => err?.response?.data?.msg ?? 'Bir şeyler yanlış gitti'
+      });
+      deletePromis.then((res) => {
+         fetchData();
+      });
+   };
    return (
       <>
          <Toaster position="top-center" reverseOrder={false}></Toaster>
          <div className="ad-info-box">
+            <img
+               className="icon"
+               onClick={() => {
+                  setopenConfirmModal(!openConfirmModal);
+               }}
+               src={trashCan}
+               alt="React Logo"
+            />
             <h2>{advertisement.title}</h2>
             <div>{advertisement.description}</div>
             <div>
@@ -105,8 +160,21 @@ export default function UserAdvertisementDetail() {
                         Mülakat Tarihi: {value.interviewDate + '-' + value.interviewTime || ''}
                      </div>
                      <div className="ap-button-group">
-                        <button>CV Görüntüle</button>
-                        <button>Cevapları görüntüle</button>
+                        <button
+                           onClick={() => {
+                              // setFocusedApplication(value);
+                              // setShofPDF(!showPDF);
+                              navigate(`/profile/pdfresume/${value.userId}`);
+                           }}>
+                           CV Görüntüle
+                        </button>
+                        <button
+                           onClick={() => {
+                              setOpenQuestionModal(!openQuestionModal);
+                              setFocusedApplication(value);
+                           }}>
+                           Cevapları görüntüle
+                        </button>
                         <button
                            onClick={() => {
                               setOpenInterviewModal(!openInterviewModal);
@@ -116,11 +184,16 @@ export default function UserAdvertisementDetail() {
                         </button>
                         <button
                            onClick={() => {
-                              navigate(`/Preinterview/${value._id}?host=true`);
+                              handleJoin(value);
                            }}>
                            Mülakata katıl
                         </button>
-                        <button>Adayı Ele</button>
+                        <button
+                           onClick={() => {
+                              handleRemoveApplication(value._id);
+                           }}>
+                           Adayı Ele
+                        </button>
                      </div>
                   </li>
                );
@@ -149,6 +222,62 @@ export default function UserAdvertisementDetail() {
                      <button type="submit">Gönder</button>
                   </div>
                </form>
+               <button
+                  className="dismiss-button"
+                  onClick={() => {
+                     setOpenInterviewModal(!openInterviewModal);
+                  }}>
+                  X
+               </button>
+            </div>
+         )}
+
+         {openQuestionModal && (
+            <div className="modal-quest">
+               {focusedApplication.custom_question.map((item) => {
+                  return (
+                     <div className="quest-content">
+                        <div>
+                           <p>
+                              <b>Soru: {'\t'}</b>
+                              {item.question}
+                           </p>
+                        </div>
+                        <div>
+                           <b>Cevap:</b> {item.answer}
+                        </div>
+                     </div>
+                  );
+               })}
+               <button
+                  onClick={() => {
+                     setOpenQuestionModal(!openQuestionModal);
+                  }}>
+                  X
+               </button>
+            </div>
+         )}
+
+         {showPDF && <PDFRender resumeId={focusedApplication.userId} />}
+
+         {openConfirmModal && (
+            <div className="confirm-modal">
+               <div>
+                  <p>Bu ilanı silmek istediğinize emin misiniz?</p>
+               </div>
+               <div>
+                  <button className="remove-btn" onClick={handleRemove}>
+                     Onayla
+                  </button>
+
+                  <button
+                     className="dismiss-button"
+                     onClick={() => {
+                        setopenConfirmModal(!openConfirmModal);
+                     }}>
+                     X
+                  </button>
+               </div>
             </div>
          )}
       </>

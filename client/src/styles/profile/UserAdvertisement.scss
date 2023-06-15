@@ -41,3 +41,13 @@
       }
    }
 }
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh; /* Ekranın tamamını kaplamak için, isteğe bağlı olarak ayarlayabilirsiniz */
+}
+
+.centered-text {
+   text-align: center;
+}

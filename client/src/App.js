@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Advertisement, Apply, Advertise } from 'components/advertisement';
 import { Login, Register } from 'components/auth';
 import { CollaborativeIde, CollaborativeEditor } from 'components/collaborativeIDE';
-import { Problems } from 'components/problems';
+import { Problems, Solve, ProblemFormComponent } from 'components/problems';
 import { Interview } from 'components/Interview';
 import Header from 'components/shared/Header';
 import Home from './components/Home';
@@ -18,13 +18,15 @@ import {
    UserAdvertisementDetail,
    Calender
 } from 'components/profile';
+import PDFRender from 'components/profile/components/ResumePdfComponents/PDFRender';
 import PageNotFound from './components/shared/PageNotFound';
 import PreInterview from 'components/PreInterview/PreInterview';
 import JoinMeeting from 'components/meeting/JoinMeeting';
 import Meeting from 'components/meeting/Meeting';
 
 const Protected = ({ isLoggedIn, children }) => {
-   if (!isLoggedIn) {
+   var token = localStorage.getItem('access_token');
+   if (!token) {
       return <Navigate to="/auth/login" replace />;
    }
    return children;
@@ -74,9 +76,13 @@ const router = createBrowserRouter([
             children: [
                {
                   path: '/profile/',
+                  element: <ProfileSideBar></ProfileSideBar>
+               },
+               {
+                  path: '/profile/pdfresume/:resumeId',
                   element: (
                      <ProfileSideBar>
-                        <UserInfo />
+                        <PDFRender />
                      </ProfileSideBar>
                   )
                },
@@ -153,6 +159,14 @@ const router = createBrowserRouter([
          {
             path: '/problems',
             element: <Problems />
+         },
+         {
+            path: '/ProblemForm',
+            element: <ProblemFormComponent />
+         },
+         {
+            path: '/solveit',
+            element: <Solve />
          },
          {
             path: '*',

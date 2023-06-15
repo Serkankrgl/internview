@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import 'styles/Colloborative/RoomList.scss';
 import {
    joinRoom,
    createRoom,
@@ -69,36 +70,45 @@ const RoomList = () => {
    };
 
    return (
-      <div>
-         <h2>Oda Listesi</h2>
-         <ul>
-            {roomList.map((room) => (
-               <li key={room.roomID} onClick={() => setJoinRoomID(room.roomID)}>
-                  Oda ID: {room.roomID}, Şifre: {room.password}, Katılımcı Sayısı:{' '}
-                  {room.clientCount}
-               </li>
-            ))}
-         </ul>
+      <div className="room-list-container">
          <div>
-            <h3>Odaya Katıl</h3>
-            <input type="text" value={joinRoomID} disabled placeholder="Oda ID" />
-            <input
-               type="password"
-               value={joinRoomPassword}
-               onChange={(e) => setJoinRoomPassword(e.target.value)}
-               placeholder="Oda Şifresi"
-            />
-            <button onClick={() => handleJoinRoom(joinRoomID)}>Katıl</button>
+            <div id="right">
+               <div className="room-action-section">
+                  <h3 className="room-action-heading ">Yeni Oda Oluştur</h3>
+                  <input
+                     className=""
+                     type="password"
+                     value={createRoomPassword}
+                     onChange={(e) => setCreateRoomPassword(e.target.value)}
+                     placeholder="Oda Şifresi"
+                  />
+                  <button onClick={handleCreateRoom}>Oluştur</button>
+               </div>
+            </div>{' '}
+            <div id="left" className="room-action-section">
+               <h3 className="room-action-heading ">Odaya Katıl</h3>
+               <input type="text" value={joinRoomID} disabled placeholder="Oda ID" />
+               <input
+                  type="password"
+                  value={joinRoomPassword}
+                  onChange={(e) => setJoinRoomPassword(e.target.value)}
+                  placeholder="Oda Şifresi"
+               />
+               <button onClick={() => handleJoinRoom(joinRoomID)}>Katıl</button>
+            </div>
          </div>
-         <div>
-            <h3>Yeni Oda Oluştur</h3>
-            <input
-               type="password"
-               value={createRoomPassword}
-               onChange={(e) => setCreateRoomPassword(e.target.value)}
-               placeholder="Oda Şifresi"
-            />
-            <button onClick={handleCreateRoom}>Oluştur</button>
+         <h2 className="room-list-heading">Oda Listesi</h2>
+         <div id="wide">
+            <ul>
+               {roomList.map((room) => (
+                  <li
+                     className="room-list-item "
+                     key={room.roomID}
+                     onClick={() => setJoinRoomID(room.roomID)}>
+                     Oda ID: {room.roomID}, Katılımcı Sayısı: {room.clientCount}
+                  </li>
+               ))}
+            </ul>
          </div>
       </div>
    );

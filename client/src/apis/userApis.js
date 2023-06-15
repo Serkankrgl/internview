@@ -12,7 +12,7 @@ const getUserId = () => {
 export async function updateResume(payload) {
    try {
       var req = { _id: getUserId(), resume: payload };
-      const { data } = await axios.post('UserServices/Users/updateResume', req);
+      const { data } = await axios.post('UserServices/Users/updateResume/', req);
       if (data.error) return Promise.reject({ error: data.error });
 
       return Promise.resolve(data);
@@ -23,12 +23,17 @@ export async function updateResume(payload) {
 
 export async function getResumeById(payload) {
    try {
-      var req = { _id: getUserId() };
-      console.log('idx :>> ', JSON.stringify(req));
+      var userId = null;
+      if (!payload) {
+         userId = getUserId();
+      } else {
+         userId = payload;
+         console.log('userID :>> ', userId);
+      }
 
       const { data } = await axios({
          method: 'GET',
-         url: '/UserServices/Users/getResume/' + getUserId(),
+         url: '/UserServices/Users/getResume/' + userId,
          headers: { 'Content-Type': 'application/json' }
       });
 

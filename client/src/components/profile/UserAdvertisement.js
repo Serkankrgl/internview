@@ -5,9 +5,11 @@ import { getAdsByOwnerId } from 'apis/advertisement';
 import toast, { Toaster } from 'react-hot-toast';
 import 'styles/profile/UserAdvertisement.scss';
 import { Link, useNavigate } from 'react-router-dom';
+
 export default function UserAdvertisement() {
    const navigate = useNavigate();
    const [pagedata, setPagedata] = useState([]);
+
    useEffect(() => {
       let promise = getAdsByOwnerId();
       toast.promise(promise, {
@@ -21,14 +23,14 @@ export default function UserAdvertisement() {
    }, []);
 
    const NavigateDetail = () => {};
+
    return (
       <>
-         {' '}
-         <Toaster position="top-center" reverseOrder={false}></Toaster>
+         <Toaster position="top-center" reverseOrder={false} />
          <div className="wrapper">
-            {pagedata?.map((value, index) => {
-               return (
-                  <div className="ad-box">
+            {Array.isArray(pagedata) && pagedata.length > 0 ? (
+               pagedata.map((value, index) => (
+                  <div className="ad-box" key={'A' + index}>
                      <div>
                         <h2>
                            {value.title}{' '}
@@ -45,8 +47,14 @@ export default function UserAdvertisement() {
                         <Link to={`/profile/UserAdvertisement/${value._id}`}>ilanı yönet</Link>
                      </div>
                   </div>
-               );
-            })}
+               ))
+            ) : (
+               <div class="container">
+                  <div class="centered-text">
+                     <h3>ilan Bulunamadı</h3>
+                  </div>
+               </div>
+            )}
          </div>
       </>
    );

@@ -1,3 +1,5 @@
-import Problems from './Problems'
+import ProblemFormComponent from './ProblemFormComponent';
+import Problems from './Problems';
+import Solve from './Solve';
 
-export { Problems }
+export { Problems, Solve, ProblemFormComponent };

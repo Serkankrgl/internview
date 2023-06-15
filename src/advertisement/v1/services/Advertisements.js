@@ -16,11 +16,10 @@ const update = (payload) => {
   Advertisement.findByIdAndUpdate(payload._id, payload);
 };
 const remove = (payload) => {
-  Advertisement.findByIdAndRemove(payload._id);
+  return Advertisement.findByIdAndRemove(payload);
 };
 
 const applyToAd = (payload) => {
-  console.log("payload :>> ", payload);
   return Advertisement.updateOne(
     { _id: payload._id },
     { $push: { applications: payload.application } }

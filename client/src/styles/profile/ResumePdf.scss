@@ -1,0 +1,68 @@
+.resume-container {
+   width: 210mm;
+   height: 297mm;
+   margin: 20px auto;
+   padding: 20px;
+   font-family: Arial, sans-serif;
+   // box-sizing: border-box;
+   background-color: #fff;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+   display: grid;
+   grid-template-columns: 70% 30%;
+   grid-gap: 20px;
+}
+
+.resume-title {
+   text-align: center;
+   font-size: 24px;
+   font-weight: bold;
+   margin-bottom: 20px;
+}
+
+.full-name,
+.phone,
+.email,
+.about-me {
+   margin-bottom: 10px;
+}
+
+.education-items,
+.experience-items,
+.skill-items,
+.hobby-items,
+.reference-items,
+.certificate-items,
+.trophy-items {
+   margin-bottom: 20px;
+}
+
+.education-item,
+.experience-item,
+.skill-item,
+.hobby-item,
+.reference-item,
+.certificate-item,
+.trophy-item {
+   margin-bottom: 10px;
+}
+
+.school-name,
+.company-name,
+.company-info,
+.name,
+.info {
+   font-size: 14px;
+   font-weight: bold;
+}
+
+.date,
+.title,
+.agency,
+.cert-identity {
+   font-size: 12px;
+   color: #888;
+}
+.download-btn {
+   width: 100%;
+   text-align: center;
+}

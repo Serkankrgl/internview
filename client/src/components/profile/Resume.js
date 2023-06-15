@@ -50,7 +50,6 @@ export default function Resume() {
       });
 
       resumeUpdatePromise.then((res) => {
-         console.log('resumeSet :>> ', res);
          dispatch(setResume(res));
       });
    };

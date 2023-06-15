@@ -7,6 +7,7 @@ const {
 } = require("../services/Advertisements");
 const httpStatus = require("http-status");
 const Advertisement = require("../models/Advertisement");
+const Application = require("../models/Application");
 const listAds = (req, res) => {
   console.log("object :>> ");
   list(req.body._id)
@@ -48,11 +49,13 @@ const updateAd = (req, res) => {
 };
 
 const removeAd = (req, res) => {
-  remove(req.body)
-    .then((result) => {
-      res.status(httpStatus[202]).send(result);
+  console.log("id :>> ", req.params.id);
+  remove(req.params.id)
+    .then(() => {
+      res.status(httpStatus[200]).send("Başarılı");
     })
     .catch((err) => {
+      console.log("err :>> ", err);
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
     });
 };
@@ -68,7 +71,6 @@ const applyToAdvertisement = (req, res) => {
 };
 
 const getAdsByOwnerId = async (req, res) => {
-  console.log("objectx :>> ", req.params);
   try {
     const advertisements = await Advertisement.find({
       ad_owner_id: req.params.id,
@@ -93,6 +95,29 @@ const getAdvertisementById = async (req, res) => {
     res.status(500).json({ error: "Failed to retrieve advertisement" });
   }
 };
+const getApplyedAdvertisement = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    const applications = await Application.find({ userId });
+
+    const advertisementIds = applications.map((app) => app.advertisementId);
+
+    const advertisements = await Advertisement.find({
+      _id: { $in: advertisementIds },
+    });
+    var returnObject = {
+      advertisements,
+      applications,
+    };
+    res.json(returnObject);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while fetching advertisements." });
+  }
+};
 
 module.exports = {
   listAds,
@@ -102,4 +127,5 @@ module.exports = {
   applyToAdvertisement,
   getAdsByOwnerId,
   getAdvertisementById,
+  getApplyedAdvertisement,
 };

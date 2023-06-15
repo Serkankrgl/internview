@@ -50,7 +50,7 @@ export default function InviteContent({ Application }) {
          <div className="ad-info-box">
             <h2>{advertisement.title}</h2>
             <div>{advertisement.description}</div>
-            <div>
+            {/* <div>
                <h4>Gereksinimler</h4>
                <ul>
                   {advertisement.requirement?.map((value) => {
@@ -65,6 +65,11 @@ export default function InviteContent({ Application }) {
                      return <li key={value}>{value}</li>;
                   }) || ''}
                </ul>
+            </div> */}
+            <div>
+               <h3>
+                  Mülakat Saati: <small> {Application.interviewTime}</small>
+               </h3>
             </div>
             <div className="ap-button-group">
                <button onClick={handleJoinInterview}>Mülakata katıl</button>

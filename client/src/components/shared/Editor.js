@@ -7,7 +7,7 @@ import 'styles/shared/IDE.scss'; // Stil dosyasını içe aktar
 
 import { Controlled as CodeMirror } from 'react-codemirror2-react-17';
 
-const CodeEditor = ({ code, language, onCodeChange, onLanguageChange }) => {
+const CodeEditor = ({ code, language, onCodeChange, onLanguageChange, justjs }) => {
    const handleCodeChange = (editor, data, value) => {
       onCodeChange(value);
    };
@@ -17,8 +17,15 @@ const CodeEditor = ({ code, language, onCodeChange, onLanguageChange }) => {
          <div className="code-editor-toolbar">
             <label htmlFor="language">Language:</label>
             <select id="language" value={language} onChange={onLanguageChange}>
-               <option value="javascript">JavaScript</option>
-               <option value="python">Python</option>
+               {justjs ? (
+                  <option value="javascript">JavaScript</option>
+               ) : (
+                  <>
+                     <option value="javascript">JavaScript</option>
+                     <option value="python">Python</option>
+                  </>
+               )}
+
                {/* Add other language options here */}
             </select>
          </div>

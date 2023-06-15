@@ -24,6 +24,12 @@ const applicationSchema = new mongoose.Schema({
   interviewLocation: {
     type: String,
   },
+  IDERoomId: {
+    type: String,
+  },
+  IDERoomPass: {
+    type: String,
+  },
   custom_question: [
     {
       question: {

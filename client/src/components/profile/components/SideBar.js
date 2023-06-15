@@ -5,9 +5,6 @@ function SideBar() {
    return (
       <div className="sidebar">
          <ul>
-            <Link to="/profile/">
-               <li>Kullanıcı Bilgileri</li>
-            </Link>
             <Link to="/profile/Resume">
                <li>Özgeçmişler</li>
             </Link>

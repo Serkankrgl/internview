@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-export default function UserApplicationItem({ application }) {
+export default function UserApplicationItem({ advertise, application }) {
    const [isExpanded, setIsExpanded] = useState(false);
 
    const handleToggle = () => {
       setIsExpanded(!isExpanded);
+      console.log('application :>> ', application);
    };
 
    return (
@@ -13,18 +14,18 @@ export default function UserApplicationItem({ application }) {
             ↓↑
          </span>
          <div>
-            <h1>{application.title}</h1>
-            <small title={application.company_info}>{application.company}</small>
+            <h1>{advertise.title}</h1>
+            <small title={advertise.company_info}>{advertise.company}</small>
             <br></br>
             <small>
-               {application.location}- {application.employment_type} - {application.seniority} -{' '}
-               {application.role}
+               {advertise.location}- {advertise.employment_type} - {advertise.seniority} -{' '}
+               {advertise.role}
             </small>
             <hr></hr>
          </div>
          <div>
             <h3>iş Tanımı</h3>
-            <p>{application.description}</p>
+            <p>{advertise.description}</p>
          </div>
          <hr />
          {isExpanded && (
@@ -33,7 +34,7 @@ export default function UserApplicationItem({ application }) {
                   <h3>Gereksinimler</h3>
                   <hr />
                   <ul>
-                     {application.requirement.map((requirement, index) => {
+                     {advertise.requirement.map((requirement, index) => {
                         return (
                            <li>
                               <b>{requirement}</b>
@@ -48,23 +49,9 @@ export default function UserApplicationItem({ application }) {
                   {application.custom_question.map((question, index) => {
                      return (
                         <div>
-                           S: <b>{question.Q}</b>
+                           S: <b>{question.question}</b>
                            <br></br>
-                           C: <span>{question.A}</span>
-                           <hr></hr>
-                        </div>
-                     );
-                  })}
-               </div>
-               <div className="detail-container">
-                  <h3>Problemler</h3>
-                  <hr />
-                  {application.problems.map((problem, index) => {
-                     return (
-                        <div>
-                           Problem: <b>{problem.problem.name}</b>
-                           <br></br>
-                           Durum: <span>{problem.statu}</span>
+                           C: <span>{question.answer}</span>
                            <hr></hr>
                         </div>
                      );

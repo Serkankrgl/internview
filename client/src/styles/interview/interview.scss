@@ -159,3 +159,25 @@
       right: 0;
    }
 }
+
+.local_screen_share_preview {
+   position: fixed;
+   width: 75%;
+   height: 75%;
+   max-height: 75%;
+   max-width: 75%;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(0, 0, 0, 0.8); /* Add a semi-transparent background */
+   z-index: 9999; /* Ensure the modal appears on top of other elements */
+   video {
+      height: 100%;
+      min-height: 100%;
+      width: 100%;
+      min-width: 100%;
+   }
+}

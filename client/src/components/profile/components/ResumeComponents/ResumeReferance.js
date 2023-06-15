@@ -34,6 +34,13 @@ export default function ResumeReferance() {
       const newResume = { ...resume, referances: referanceList };
       dispatch(setResume(newResume));
    }, [referanceList, dispatch]);
+
+   const removeReferance = (index) => {
+      const updatedReferanceList = [...referanceList];
+      updatedReferanceList.splice(index, 1);
+      setReferanceList(updatedReferanceList);
+   };
+
    return (
       <div className="form-box">
          <form onSubmit={(e) => e.preventDefault()}>
@@ -94,7 +101,12 @@ export default function ResumeReferance() {
                               İletişim: {referance.email} - {referance.phone}
                            </p>
                         </div>
-                        <img className="icon" src={trashCan} alt="React Logo" />
+                        <img
+                           onClick={() => removeReferance(index)}
+                           className="icon"
+                           src={trashCan}
+                           alt="React Logo"
+                        />
                      </div>
                   ))}
                </div>

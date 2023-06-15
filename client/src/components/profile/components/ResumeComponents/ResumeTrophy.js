@@ -29,6 +29,11 @@ export default function ResumeTrophy() {
       dispatch(setResume(newResume));
    }, [trophyList, dispatch]);
 
+   const removeTrophy = (index) => {
+      const updatedTrophyList = [...trophyList];
+      updatedTrophyList.splice(index, 1);
+      setTrophyList(updatedTrophyList);
+   };
    return (
       <div className="form-box">
          <form onSubmit={(e) => e.preventDefault()}>
@@ -60,7 +65,12 @@ export default function ResumeTrophy() {
                            <h3>{trophy.name}</h3>
                            <p>{trophy.info}</p>
                         </div>
-                        <img className="icon" src={trashCan} alt="React Logo" />
+                        <img
+                           onClick={() => removeTrophy(index)}
+                           className="icon"
+                           src={trashCan}
+                           alt="React Logo"
+                        />
                      </div>
                   ))}
                </div>

@@ -59,7 +59,7 @@ export const updateApplication = (applicationId, data) => {
 export const deleteApplication = (applicationId) => {
    return new Promise((resolve, reject) => {
       axios
-         .delete(`{{hostname}}/AdvertisementServices/applications/delete/${applicationId}`)
+         .delete(`/AdvertisementServices/applications/delete/${applicationId}`)
          .then((response) => resolve(response.data))
          .catch((error) => reject(new Error(error)));
    });

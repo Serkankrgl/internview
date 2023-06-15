@@ -23,6 +23,12 @@ export default function ResumeHobby() {
       dispatch(setResume(newResume));
    }, [hobbyList, dispatch]);
 
+   const remove = (index) => {
+      const updatedHobbyList = [...hobbyList];
+      updatedHobbyList.splice(index, 1);
+      setHobbyList(updatedHobbyList);
+   };
+
    return (
       <div className="form-box">
          <form onSubmit={(e) => e.preventDefault()}>
@@ -49,7 +55,14 @@ export default function ResumeHobby() {
                            justifyContent: 'space-between'
                         }}>
                         <p>{hobby}</p>
-                        <img className="icon" src={trashCan} alt="React Logo" />
+                        <img
+                           onClick={() => {
+                              remove(index);
+                           }}
+                           className="icon"
+                           src={trashCan}
+                           alt="React Logo"
+                        />
                      </div>
                   ))}
                </div>
