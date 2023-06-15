@@ -1,5 +1,9 @@
 - Projeyi çalıştırmadan önce 27017 portunda bir mongo db ayağa kaldırınız
 
-* Porjeyi çalıştırmak için aşağıdaki komutu terminalde çalıştırınız.
+Docker üzerinde bunu kaldırmak için aşğaıdaki kodu ana dizinde çalıştırın.
 
-  ` npm run start:all`
+    Docker Command: docker-compose up -d
+
+- Porjeyi çalıştırmak için ana dizinde aşağıdaki komutu terminalde çalıştırınız.
+
+  `npm run start:all`
